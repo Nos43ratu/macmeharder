@@ -1,9 +1,9 @@
 import React from "react";
-import { SvgProps } from "../types";
+import { SvgProps } from "../iconTypes";
 
 const SVG = ({
-  width = "23px",
-  height = "16px",
+  width = 23,
+  height = 16,
   viewBox = "0 0 23px 16px",
   className = "",
   fill = "#FFFFFF",
@@ -27,9 +27,9 @@ const SVG = ({
         </symbol>
       </g>
     </defs>
-    <g id="surface1">
+    <g id="JoyStick">
       <g fill={fill}>
-        <use xlinkHref="#glyph0-1" x="-1" y="10" />
+        <use xlinkHref="#JoyStick" x="-1" y="10" />
       </g>
     </g>
   </svg>

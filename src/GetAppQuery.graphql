@@ -1,0 +1,25 @@
+query GetAppQuery($id:ID!) {
+    app(appId: $id){
+        id
+        created
+        title
+        language
+        languageCount
+        description
+        size
+        award
+        place
+        age
+        category{
+            id
+            name
+        }
+        developer
+        chart
+        version
+        compatibility
+        appImages{
+            url
+        }
+    }
+}

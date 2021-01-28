@@ -1,12 +1,22 @@
-import '../assets/styles/index.css'
+import "../assets/styles/index.css";
+import { ApolloProvider } from "@apollo/client";
 import React from "react";
+import { useApollo } from "../apollo";
+import Layout from "../Layout";
 interface Props {
-  Component:any,
-  pageProps:any
+  Component: any;
+  pageProps: any;
 }
 
-function MyApp({ Component, pageProps }:Props) {
-  return <Component {...pageProps} />
+function MyApp({ Component, pageProps }: Props) {
+  const client = useApollo(pageProps);
+  return (
+    <ApolloProvider client={client}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </ApolloProvider>
+  );
 }
 
-export default MyApp
+export default MyApp;

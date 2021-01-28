@@ -1,7 +1,7 @@
 import React from "react";
 
 import Arrow from "./icons/Arrow";
-import { IconPropsType } from "./types";
+import { IconPropsType } from "../../types/iconTypes";
 import ArrowSlider from "./icons/ArrowSlider";
 import Brush from "./icons/Brush";
 import Hammer from "./icons/Hammer";
@@ -41,8 +41,6 @@ const Icon = ({ name, onClick, ...props }: IconPropsType) => {
         return <StarFilled {...props} />;
       case "star-half-filled":
         return <StarHalfFilled {...props} />;
-      default:
-        return <div />;
     }
   };
 

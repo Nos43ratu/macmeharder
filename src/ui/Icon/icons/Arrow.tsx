@@ -1,5 +1,5 @@
 import React from "react";
-import { SvgProps } from "../types";
+import { SvgProps } from "../iconTypes";
 
 const SVG = ({
   width = "8px",
