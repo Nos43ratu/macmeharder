@@ -1,5 +1,5 @@
 import React from "react";
-import { PostLGPropsType, PostMDPropsType } from "../../types/PostPropsTypes";
+import { PostMDPropsType } from "../../types/PostPropsTypes";
 
 const PostMd = ({ data }: PostMDPropsType) => {
   return (
