@@ -1,9 +1,9 @@
 import React from "react";
-import { SvgProps } from "../../../types/iconTypes";
+import { SvgProps } from "../types";
 
 const SVG = ({
-  width = 5,
-  height = 13,
+  width = "5px",
+  height = "13px",
   viewBox = "0 0 5px 13px",
   className = "",
   fill = "#FFFFFF",

@@ -15,7 +15,7 @@ function createApolloClient() {
   return new ApolloClient({
     ssrMode: typeof window === "undefined",
     link: new HttpLink({
-      uri: "https://macme.herokuapp.com/graphql", // Server URL (must be absolute)
+      uri: process.env.NEXT_PUBLIC_APP_GRAPHQL_URI, // Server URL (must be absolute)
       credentials: "same-origin", // Additional fetch() options like `credentials` or `headers`
     }),
     cache: new InMemoryCache({

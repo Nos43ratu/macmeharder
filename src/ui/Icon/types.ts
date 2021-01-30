@@ -4,16 +4,17 @@ export interface SvgProps {
   style?: CSSProperties;
   fill?: string;
   stroke?: string;
-  width?: number;
-  height?: number;
+  width?: string;
+  height?: string;
   className?: string;
   viewBox?: string;
+  name: string;
 }
 
 export interface IconPropsType {
   name: string;
-  width?: number;
-  height?: number;
+  width?: string;
+  height?: string;
   fill?: string;
   className?: string;
   onClick?: MouseEventHandler;

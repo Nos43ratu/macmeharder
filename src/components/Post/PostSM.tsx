@@ -1,5 +1,6 @@
 import React from "react";
 import { PostSMPropsType } from "../../types/PostPropsTypes";
+import { AppsNode } from "../../pages/discover/GetAppsList.generated";
 
 const PostSM = ({ data }: PostSMPropsType) => {
   return (

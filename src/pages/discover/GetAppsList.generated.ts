@@ -1,3 +1,5 @@
+import * as Types from '../../types';
+
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
@@ -117,48 +119,37 @@ export type QueryPostArgs = {
   postId?: Maybe<Scalars['ID']>;
 };
 
-export type GetAppQueryQueryVariables = Exact<{
-  id: Scalars['ID'];
+export type GetAppsListQueryVariables = Types.Exact<{
+  page: Types.Scalars['Int'];
 }>;
 
 
-export type GetAppQueryQuery = (
+export type GetAppsListQuery = (
   { __typename?: 'Query' }
-  & { app?: Maybe<(
+  & { appsList?: Types.Maybe<Array<Types.Maybe<(
     { __typename?: 'AppsNode' }
-    & Pick<AppsNode, 'id' | 'created' | 'title' | 'language' | 'languageCount' | 'description' | 'size' | 'award' | 'place' | 'age' | 'developer' | 'chart' | 'version' | 'compatibility'>
+    & Pick<Types.AppsNode, 'id' | 'title' | 'description'>
     & { category: (
       { __typename?: 'AppCategoryNode' }
-      & Pick<AppCategoryNode, 'id' | 'name'>
+      & Pick<Types.AppCategoryNode, 'id' | 'name'>
     ), appImages: Array<(
       { __typename?: 'ImagesNode' }
-      & Pick<ImagesNode, 'url'>
+      & Pick<Types.ImagesNode, 'url'>
     )> }
-  )> }
+  )>>> }
 );
 
 
-export const GetAppQueryDocument = gql`
-    query GetAppQuery($id: ID!) {
-  app(appId: $id) {
+export const GetAppsListDocument = gql`
+    query GetAppsList($page: Int!) {
+  appsList(page: $page) {
     id
-    created
     title
-    language
-    languageCount
     description
-    size
-    award
-    place
-    age
     category {
       id
       name
     }
-    developer
-    chart
-    version
-    compatibility
     appImages {
       url
     }
@@ -167,27 +158,27 @@ export const GetAppQueryDocument = gql`
     `;
 
 /**
- * __useGetAppQueryQuery__
+ * __useGetAppsListQuery__
  *
- * To run a query within a React component, call `useGetAppQueryQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetAppQueryQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGetAppsListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAppsListQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetAppQueryQuery({
+ * const { data, loading, error } = useGetAppsListQuery({
  *   variables: {
- *      id: // value for 'id'
+ *      page: // value for 'page'
  *   },
  * });
  */
-export function useGetAppQueryQuery(baseOptions: Apollo.QueryHookOptions<GetAppQueryQuery, GetAppQueryQueryVariables>) {
-        return Apollo.useQuery<GetAppQueryQuery, GetAppQueryQueryVariables>(GetAppQueryDocument, baseOptions);
+export function useGetAppsListQuery(baseOptions: Apollo.QueryHookOptions<GetAppsListQuery, GetAppsListQueryVariables>) {
+        return Apollo.useQuery<GetAppsListQuery, GetAppsListQueryVariables>(GetAppsListDocument, baseOptions);
       }
-export function useGetAppQueryLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAppQueryQuery, GetAppQueryQueryVariables>) {
-          return Apollo.useLazyQuery<GetAppQueryQuery, GetAppQueryQueryVariables>(GetAppQueryDocument, baseOptions);
+export function useGetAppsListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAppsListQuery, GetAppsListQueryVariables>) {
+          return Apollo.useLazyQuery<GetAppsListQuery, GetAppsListQueryVariables>(GetAppsListDocument, baseOptions);
         }
-export type GetAppQueryQueryHookResult = ReturnType<typeof useGetAppQueryQuery>;
-export type GetAppQueryLazyQueryHookResult = ReturnType<typeof useGetAppQueryLazyQuery>;
-export type GetAppQueryQueryResult = Apollo.QueryResult<GetAppQueryQuery, GetAppQueryQueryVariables>;
+export type GetAppsListQueryHookResult = ReturnType<typeof useGetAppsListQuery>;
+export type GetAppsListLazyQueryHookResult = ReturnType<typeof useGetAppsListLazyQuery>;
+export type GetAppsListQueryResult = Apollo.QueryResult<GetAppsListQuery, GetAppsListQueryVariables>;

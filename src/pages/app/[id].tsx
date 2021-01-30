@@ -1,14 +1,29 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { useGetAppQueryQuery } from "../../generated/graphql";
+import { useGetAppQueryQuery, AppsNode, Query } from "./GetAppQuery.generated";
+import AppXl from "../../components/App/AppXL";
 
 const AppPage = () => {
-  const { data } = useGetAppQueryQuery({
+  const { data, loading, error } = useGetAppQueryQuery({
     variables: {
-      id: `${useRouter().query}`,
+      id: `${useRouter().query.id}`,
     },
   });
-  console.log(data);
-  return <div>asd</div>;
+  if (data) {
+    console.log(data);
+  }
+  const app = data?.app;
+
+  return !loading ? (
+    <div className="h-full w-full pt-16">
+      <AppXl app={app as AppsNode} />
+      {/*<AppDiscSm />*/}
+      {/*<Section type={"app-img"} border={false} />*/}
+      {/*<AppDescription />*/}
+      {/*<Section type="app-lg" title="Editor's Choice" />*/}
+    </div>
+  ) : (
+    <div>Loading</div>
+  );
 };
 export default AppPage;

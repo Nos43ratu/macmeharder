@@ -1,8 +1,9 @@
 import React from "react";
 import { AppMDMDPropsType } from "../../types/AppPropsTypes";
 import Link from "next/link";
+import { AppsNode } from "../../pages/discover/GetAppsList.generated";
 export type appmd = {
-  data: AppMDMDPropsType;
+  data: AppsNode;
   withBorder?: boolean;
 };
 

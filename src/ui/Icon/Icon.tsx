@@ -1,7 +1,7 @@
 import React from "react";
 
 import Arrow from "./icons/Arrow";
-import { IconPropsType } from "../../types/iconTypes";
+import { IconPropsType } from "./types";
 import ArrowSlider from "./icons/ArrowSlider";
 import Brush from "./icons/Brush";
 import Hammer from "./icons/Hammer";
@@ -18,29 +18,31 @@ const Icon = ({ name, onClick, ...props }: IconPropsType) => {
   const getIcon = () => {
     switch (name) {
       case "arrow":
-        return <Arrow {...props} />;
+        return <Arrow {...props} name={name} />;
       case "arrow-slider":
-        return <ArrowSlider {...props} />;
+        return <ArrowSlider {...props} name={name} />;
       case "brush":
-        return <Brush {...props} />;
+        return <Brush {...props} name={name} />;
       case "hammer":
-        return <Hammer {...props} />;
+        return <Hammer {...props} name={name} />;
       case "joystick":
-        return <Joystick {...props} />;
+        return <Joystick {...props} name={name} />;
       case "note":
-        return <Note {...props} />;
+        return <Note {...props} name={name} />;
       case "plane":
-        return <Plane {...props} />;
+        return <Plane {...props} name={name} />;
       case "search":
-        return <Search {...props} />;
+        return <Search {...props} name={name} />;
       case "share":
-        return <Share {...props} />;
+        return <Share {...props} name={name} />;
       case "star":
-        return <Star {...props} />;
+        return <Star {...props} name={name} />;
       case "star-filled":
-        return <StarFilled {...props} />;
+        return <StarFilled {...props} name={name} />;
       case "star-half-filled":
-        return <StarHalfFilled {...props} />;
+        return <StarHalfFilled {...props} name={name} />;
+      default:
+        return <div />;
     }
   };
 

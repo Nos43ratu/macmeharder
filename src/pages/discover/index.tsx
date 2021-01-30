@@ -7,8 +7,16 @@ import {
 } from "../../assets/tempData/TempPostsData";
 import Posts from "../../components/Post/Posts";
 import Apps from "../../components/App/Apps";
+import { useGetAppsListQuery, AppsNode, Query } from "./GetAppsList.generated";
+import { NodePerElements } from "../../utils/ArrayWithNodes";
 const Discover = () => {
-  return (
+  const { data, loading, error } = useGetAppsListQuery({
+    variables: {
+      page: 1,
+    },
+  });
+
+  return !loading || data ? (
     <div className="h-full bg">
       <Sections border={false}>
         <Posts.lg data={tempDataPostsLG} />
@@ -17,12 +25,14 @@ const Discover = () => {
         <Posts.md data={tempDataPostsMD} />
       </Sections>
       <Sections border={true} title="Editors Choice">
-        <Apps.md data={tempDataAppsMD} />
+        <Apps.md data={data?.appsList} />
       </Sections>
       <Sections border={true} title="Do more with MacOs bigSur">
         <Posts.sm data={tempDataPostsMD} />
       </Sections>
     </div>
+  ) : (
+    <div>loading</div>
   );
 };
 
