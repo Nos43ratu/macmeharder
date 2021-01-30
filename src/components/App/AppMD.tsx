@@ -8,13 +8,21 @@ export type appmd = {
 };
 
 const AppMd = ({ data, withBorder = true }: appmd) => {
+  console.log(data?.appImages[0]?.url);
   return (
     <Link href={`/app/${data.id}`}>
       <div className="flex items-center overflow-hidden cursor-pointer">
-        <img src={data.img} alt="" className="w-10 h-10 rounded-lg" />
+        <img
+          src={
+            (process.env.NEXT_PUBLIC_APP_URI || "") +
+            (data?.appImages[0]?.url || "")
+          }
+          alt=""
+          className="w-10 h-10 rounded-lg"
+        />
         <div
           className={`flex items-center ml-2 h-16 justify-between ${
-            withBorder ? "border-b border-tuna" : ""
+            withBorder ? "border-t border-tuna" : ""
           }`}
         >
           <div className="flex flex-col justify-center">

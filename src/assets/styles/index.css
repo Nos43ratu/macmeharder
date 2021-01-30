@@ -15,7 +15,7 @@ body,
   width: calc(100% - 16rem);
   z-index: 4;
 }
-section {
+.section {
   position: relative;
 }
 
@@ -59,7 +59,7 @@ section {
 .swiper-button-next::after,
 .swiper-button-prev::after {
   content: "" !important;
-  background: url("../tempImages/xxxhdpi.png");
+  background: url("../images/ArrowSlider.svg") no-repeat;
   background-size: contain;
   width: 16px;
   height: 56px;

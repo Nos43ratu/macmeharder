@@ -6,23 +6,31 @@ import { AppsPropsTypes } from "../../types/AppPropsTypes";
 import AppMd from "./AppMD";
 import { NodePerElements } from "../../utils/ArrayWithNodes";
 import { AppsNode } from "../../pages/discover/GetAppsList.generated";
+import { Query } from "../../pages/app/GetAppQuery.generated";
 const Apps = () => {
   return <div></div>;
 };
 const lg = () => {
   return <></>;
 };
-const md = ({ data }: any) => {
+type appsMdType = {
+  data: AppsNode[];
+  loading: boolean;
+};
+const md = ({ data, loading }: appsMdType) => {
   let AppsNode = NodePerElements(data, 3);
+  if (loading) {
+    return <div>Loading</div>;
+  }
   SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
   return AppsNode ? (
     <>
       <Swiper spaceBetween={20} slidesPerView={5} navigation>
         {AppsNode.map((e: AppsNode[]) => (
           <SwiperSlide>
-            <AppMd data={e[0]} />
-            <AppMd data={e[1]} />
-            <AppMd data={e[2]} withBorder={false} />
+            {e[0] && <AppMd data={e[0]} withBorder={false} />}
+            {e[1] && <AppMd data={e[1]} />}
+            {e[2] && <AppMd data={e[2]} />}
           </SwiperSlide>
         ))}
       </Swiper>

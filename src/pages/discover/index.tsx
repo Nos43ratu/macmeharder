@@ -15,8 +15,14 @@ const Discover = () => {
       page: 1,
     },
   });
+  if (error) {
+    return <div>ERROR</div>;
+  }
+  if (loading || !data) {
+    return <h1>loading...</h1>;
+  }
 
-  return !loading || data ? (
+  return (
     <div className="h-full bg">
       <Sections border={false}>
         <Posts.lg data={tempDataPostsLG} />
@@ -25,14 +31,12 @@ const Discover = () => {
         <Posts.md data={tempDataPostsMD} />
       </Sections>
       <Sections border={true} title="Editors Choice">
-        <Apps.md data={data?.appsList} />
+        <Apps.md data={data?.appsList as AppsNode[]} loading={loading} />
       </Sections>
       <Sections border={true} title="Do more with MacOs bigSur">
         <Posts.sm data={tempDataPostsMD} />
       </Sections>
     </div>
-  ) : (
-    <div>loading</div>
   );
 };
 

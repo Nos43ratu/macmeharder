@@ -19,6 +19,7 @@ module.exports = {
       "sun9-68.userapi.com",
       "sun9-57.userapi.com",
       "hotpot.ai",
+      "macme.herokuapp.com",
     ],
   },
 };

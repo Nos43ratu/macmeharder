@@ -5,7 +5,7 @@ type AppXlPropsType = {
 };
 const AppXl = ({ app }: AppXlPropsType) => {
   return (
-    <div className="flex h-32 pb-4 mx-10  items-center overflow-hidden border-b border-tuna">
+    <div className="flex h-32 pb-4 items-center overflow-hidden">
       <img
         // src={"https://macme.herokuapp.com" + app?.appImages[0]?.url}
         alt=""
@@ -18,7 +18,9 @@ const AppXl = ({ app }: AppXlPropsType) => {
           <div className="clamp-1 text-xm text-santosGray">
             {app?.developer}
           </div>
-          <div className="clamp-1 text-xs text-santosGray">{app?.category}</div>
+          <div className="clamp-1 text-xs text-santosGray">
+            {app?.category.name}
+          </div>
         </div>
         <div className="w-16 h-6 bg-dodgerBlue rounded-3xl text-white justify-center items-center flex  text-xs uppercase font-bold cursor-pointer">
           Get
