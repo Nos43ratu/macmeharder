@@ -18,6 +18,7 @@ module.exports = {
       "sun9-63.userapi.com",
       "sun9-68.userapi.com",
       "sun9-57.userapi.com",
+      "hotpot.ai",
     ],
   },
 };

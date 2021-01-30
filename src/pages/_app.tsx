@@ -9,7 +9,7 @@ interface Props {
 }
 
 function MyApp({ Component, pageProps }: Props) {
-  const client = useApollo(pageProps);
+  const client = useApollo(pageProps.initialApolloState);
   return (
     <ApolloProvider client={client}>
       <Layout>

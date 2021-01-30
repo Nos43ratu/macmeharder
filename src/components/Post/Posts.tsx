@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  PostLGPropsType,
-  PostMDPropsType,
-  PostsPropsTypes,
-} from "../../types/PostPropsTypes";
+import { PostLGPropsType, PostsPropsTypes } from "../../types/PostPropsTypes";
 import PostLg from "./PostLG";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
@@ -30,7 +26,9 @@ const md = ({ data }: PostsPropsTypes) => {
       <Swiper spaceBetween={20} slidesPerView={2} navigation>
         {data.map((e) => (
           <SwiperSlide>
-            <PostMD data={e} />
+            <div key={e.id}>
+              <PostMD data={e} />
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>
