@@ -11,7 +11,7 @@ const text = ({ description }: AppDescriptionText) => {
   if (!description) {
     return <div> Cannot load </div>;
   }
-  return <div className="pr-96 text-lg">{description}</div>;
+  return <div className="text-lg">{description}</div>;
 };
 type AppDescriptionInfo = {
   app: AppsNode | undefined | null;

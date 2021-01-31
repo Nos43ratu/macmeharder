@@ -6,7 +6,9 @@ const Sections = ({ children, border = true, title }: SectionPropsType) => {
   return (
     <>
       {title && (
-        <div className="pt-2 pb-3 text-2xl px-10 font-bold">{title}</div>
+        <div className="pt-2 pb-3 text-2xl md:px-10 px-1.5 font-bold">
+          {title}
+        </div>
       )}
       <div className="section relative w-full px-10 ">{children}</div>
       {border ? (

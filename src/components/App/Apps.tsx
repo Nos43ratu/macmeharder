@@ -51,6 +51,9 @@ type appsImgPreview = {
 };
 const imgPreview = ({ data }: appsImgPreview) => {
   SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
+  if (data.length === 0 || !data) {
+    return <div></div>;
+  }
   return (
     <>
       <Swiper spaceBetween={20} slidesPerView={2} navigation loop={true}>

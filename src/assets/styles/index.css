@@ -16,9 +16,14 @@ body,
   transform: translateX(-50%);
 }
 .layout {
-  width: calc(100% - 3rem);
+  width: 100%;
   z-index: 4;
   position: relative;
+}
+@media (min-width: 768px) {
+  .layout {
+    width: calc(100% - 3rem);
+  }
 }
 @media (min-width: 1280px) {
   .layout {

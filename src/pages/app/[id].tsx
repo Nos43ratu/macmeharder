@@ -24,7 +24,6 @@ const AppPage = () => {
   if (loading || !data) {
     return <Loading />;
   }
-  // console.log(data.app);
   return (
     <div className="h-full w-full pt-16">
       <Sections border={false}>
