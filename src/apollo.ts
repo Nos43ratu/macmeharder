@@ -13,6 +13,7 @@ let apolloClient: ApolloClient<NormalizedCacheObject>;
 
 function createApolloClient() {
   return new ApolloClient({
+    connectToDevTools: true,
     ssrMode: typeof window === "undefined",
     link: new HttpLink({
       uri: process.env.NEXT_PUBLIC_APP_GRAPHQL_URI, // Server URL (must be absolute)

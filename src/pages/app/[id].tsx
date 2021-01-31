@@ -1,8 +1,16 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { useGetAppQueryQuery, AppsNode, Query } from "./GetAppQuery.generated";
+import Custom404 from "../404";
+import {
+  useGetAppQueryQuery,
+  AppsNode,
+  ImagesNode,
+} from "./GetAppQuery.generated";
 import AppXl from "../../components/App/AppXL";
 import Sections from "../../components/Section/Sections";
+import Apps from "../../components/App/Apps";
+import AppDescription from "../../components/App/AppDescription";
+import Loading from "../../components/FetchingStates/Loading";
 
 const AppPage = () => {
   const { data, loading, error } = useGetAppQueryQuery({
@@ -10,22 +18,27 @@ const AppPage = () => {
       id: `${useRouter().query.id}`,
     },
   });
-  const app = data?.app;
   if (error) {
-    return <div>ERROR</div>;
+    return <Custom404 />;
   }
   if (loading || !data) {
-    return <h1>loading...</h1>;
+    return <Loading />;
   }
+  // console.log(data.app);
   return (
     <div className="h-full w-full pt-16">
-      <Sections>
-        <AppXl app={app as AppsNode} />
+      <Sections border={false}>
+        <AppXl app={data?.app as AppsNode} />
       </Sections>
-      {/*<AppDiscSm />*/}
-      {/*<Section type={"app-img"} border={false} />*/}
-      {/*<AppDescription />*/}
-      {/*<Section type="app-lg" title="Editor's Choice" />*/}
+      <Sections border={false}>
+        <Apps.imgPreview data={data?.app?.appImages as ImagesNode[]} />
+      </Sections>
+      <Sections>
+        <AppDescription.text description={data?.app?.description} />
+      </Sections>
+      <Sections title="Information">
+        <AppDescription.info app={data?.app as AppsNode} />
+      </Sections>
     </div>
   );
 };

@@ -25,9 +25,16 @@ const md = ({ data }: PostsPropsTypes) => {
   SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
   return data ? (
     <>
-      <Swiper spaceBetween={20} slidesPerView={2} navigation>
+      <Swiper
+        spaceBetween={20}
+        slidesPerView={1}
+        navigation
+        breakpoints={{
+          1024: { slidesPerView: 2 },
+        }}
+      >
         {data.map((e) => (
-          <SwiperSlide>
+          <SwiperSlide key={e.id}>
             <div key={e.id}>
               <PostMD data={e} />
             </div>
@@ -43,9 +50,20 @@ const sm = ({ data }: PostsPropsTypes) => {
   SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
   return data ? (
     <>
-      <Swiper spaceBetween={20} slidesPerView={5} navigation>
+      <Swiper
+        spaceBetween={20}
+        slidesPerView={1}
+        navigation
+        breakpoints={{
+          640: { slidesPerView: 1 },
+          768: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 },
+          1280: { slidesPerView: 4 },
+          1536: { slidesPerView: 5 },
+        }}
+      >
         {data.map((e) => (
-          <SwiperSlide>
+          <SwiperSlide key={e.id}>
             <PostSM data={e} />
           </SwiperSlide>
         ))}

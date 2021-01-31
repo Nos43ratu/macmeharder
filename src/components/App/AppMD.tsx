@@ -8,7 +8,6 @@ export type appmd = {
 };
 
 const AppMd = ({ data, withBorder = true }: appmd) => {
-  console.log(data?.appImages[0]?.url);
   return (
     <Link href={`/app/${data.id}`}>
       <div className="flex items-center overflow-hidden cursor-pointer">
