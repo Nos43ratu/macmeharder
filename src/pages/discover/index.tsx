@@ -6,7 +6,7 @@ import {
 } from "../../assets/tempData/TempPostsData";
 import Posts from "../../components/Post/Posts";
 import Apps from "../../components/App/Apps";
-import { useGetAppsListQuery, AppsNode } from "./GetAppsList.generated";
+import { useGetAppsListQuery, AppsNode } from "../../generated/graphql";
 import Loading from "../../components/FetchingStates/Loading";
 const Discover = () => {
   const { data, loading, error } = useGetAppsListQuery({

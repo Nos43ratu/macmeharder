@@ -1,7 +1,7 @@
 import React from "react";
 import { AppMDMDPropsType } from "../../types/AppPropsTypes";
 import Link from "next/link";
-import { AppsNode } from "../../pages/discover/GetAppsList.generated";
+import { AppsNode } from "../../generated/graphql";
 export type appmd = {
   data: AppsNode;
   withBorder?: boolean;

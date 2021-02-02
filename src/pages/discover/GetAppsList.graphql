@@ -2,6 +2,7 @@ query GetAppsList($page:Int!) {
     appsList(page: $page){
         id
         title
+
         description
         category{
             id

@@ -5,7 +5,7 @@ import {
   useGetAppQueryQuery,
   AppsNode,
   ImagesNode,
-} from "./GetAppQuery.generated";
+} from "../../generated/graphql";
 import AppXl from "../../components/App/AppXL";
 import Sections from "../../components/Section/Sections";
 import Apps from "../../components/App/Apps";

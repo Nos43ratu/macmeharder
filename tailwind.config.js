@@ -14,6 +14,22 @@ module.exports = {
       santosGray: "#A3A3A6",
       iron: "#e0e0e1",
     },
+    extend: {
+      animation: {
+        "right-slide": "rightSlide .5s linear forwards",
+        "left-slide": "leftSlide .5s linear forwards",
+      },
+      keyframes: {
+        rightSlide: {
+          "0%": { left: "100%" },
+          "100%": { left: "0" },
+        },
+        leftSlide: {
+          "0%": { left: "0" },
+          "100%": { left: "100%" },
+        },
+      },
+    },
   },
   variants: {
     extend: {},

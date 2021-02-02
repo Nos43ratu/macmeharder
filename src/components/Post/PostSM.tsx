@@ -1,10 +1,9 @@
 import React from "react";
 import { PostSMPropsType } from "../../types/PostPropsTypes";
-import { AppsNode } from "../../pages/discover/GetAppsList.generated";
 
 const PostSM = ({ data }: PostSMPropsType) => {
   return (
-    <div className="w-full h-72 flex flex-col overflow-hidden ">
+    <div className="w-full h-72 flex flex-col overflow-hidden">
       <img src={data.img} className="rounded-sm object-cover h-36" alt="post" />
       <div className="flex flex-col justify-end text-santosGray mt-3">
         <div className="text-xs uppercase font-bold clamp-1">{data.title1}</div>

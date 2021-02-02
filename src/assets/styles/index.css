@@ -21,6 +21,10 @@ body,
   position: relative;
 }
 @media (min-width: 768px) {
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
+    display: block;
+  }
   .layout {
     width: calc(100% - 3rem);
   }
@@ -74,6 +78,7 @@ body,
 .swiper-button-next::after,
 .swiper-button-prev::after {
   content: "" !important;
+  display: none;
   background: url("../images/ArrowSlider.svg") no-repeat;
   background-size: contain;
   width: 16px;

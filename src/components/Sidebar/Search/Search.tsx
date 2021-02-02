@@ -9,8 +9,8 @@ const Search = () => {
           name="search"
           className="opacity-50"
           fill="#FFFFFF"
-          width={14}
-          height={14}
+          width={"14"}
+          height={"14"}
         />
       </div>
       <div className="flex items-center ml-1">

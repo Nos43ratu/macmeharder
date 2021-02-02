@@ -13,6 +13,7 @@ module.exports = {
       "sun9-2.userapi.com",
       "sun9-55.userapi.com",
       "sun9-14.userapi.com",
+      "sun9-3.userapi.com",
       "sun9-19.userapi.com",
       "sun9-60.userapi.com",
       "sun9-63.userapi.com",

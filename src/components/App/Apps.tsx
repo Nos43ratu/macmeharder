@@ -3,10 +3,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import AppMd from "./AppMD";
 import { NodePerElements } from "../../utils/ArrayWithNodes";
-import {
-  AppsNode,
-  ImagesNode,
-} from "../../pages/discover/GetAppsList.generated";
+import { AppsNode, ImagesNode } from "../../generated/graphql";
+import { popUpImg } from "../../utils/popUp";
 const Apps = () => {
   return <div></div>;
 };
@@ -61,8 +59,13 @@ const imgPreview = ({ data }: appsImgPreview) => {
           <SwiperSlide key={e.id}>
             <img
               src={(process.env.NEXT_PUBLIC_APP_URI || "") + (e.url || "")}
-              className="h-96 w-full rounded-md object-contain "
+              className="h-96 w-full rounded-md object-contain cursor-pointer"
               alt="post"
+              onClick={() =>
+                popUpImg(
+                  (process.env.NEXT_PUBLIC_APP_URI || "") + (e.url || "")
+                )
+              }
             />
           </SwiperSlide>
         ))}

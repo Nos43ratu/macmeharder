@@ -4,10 +4,7 @@ documents: "src/**/*.graphql"
 generates:
   src/types.ts:
     - typescript
-  src/:
-    preset: near-operation-file
-    presetConfig:
-      baseTypesPath: types.ts
+  src/generated/graphql.tsx:
     plugins:
       - "typescript"
       - "typescript-operations"

@@ -5,8 +5,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import PostMD from "./PostMD";
 import PostSM from "./PostSM";
-import { AppsNode, Query } from "../../pages/discover/GetAppsList.generated";
-import App from "next/app";
 
 const Posts = ({ data }: any) => {
   return data ? (
