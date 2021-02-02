@@ -6,20 +6,21 @@ import { sidebarItems } from "./sectionsconfig";
 const Nav = () => {
   const router = useRouter();
   return (
-    <>
+    <div className="flex flex-row md:flex-col h-full">
       {sidebarItems.map((item) => (
         <Link href={item.path} key={item.id}>
           <a
-            className={`w-full flex items-center p-0.5 xl:px-2 xl:py-1 rounded ${
+            className={`w-full flex items-center p-0.5 xl:px-2 xl:py-1 md:justify-start justify-center rounded ${
               router.pathname === item.path ? `bg-shipGray` : ""
             }`}
           >
-            {item.icon}
+            <div>{item.icon}</div>
+
             <div className="ml-2 xl:block hidden">{item.name}</div>
           </a>
         </Link>
       ))}
-    </>
+    </div>
   );
 };
 
