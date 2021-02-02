@@ -6,7 +6,6 @@ const Layout = ({ children }: { children: ReactNode }) => {
     <div className="flex w-full h-full" id="wrapper">
       <Sidebar />
       <div className="layout">{children}</div>
-      <div id="wrapper"></div>
     </div>
   );
 };
