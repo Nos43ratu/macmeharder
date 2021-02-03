@@ -1,39 +1,32 @@
 import React from "react";
 import Sections from "../../components/Section/Sections";
-import {
-  tempDataPostsMD,
-  tempDataPostsLG,
-} from "../../assets/tempData/TempPostsData";
-import Posts from "../../components/Post/Posts";
-import Apps from "../../components/App/Apps";
 import { useGetAppsListQuery, AppsNode } from "../../generated/graphql";
 import Loading from "../../components/FetchingStates/Loading";
+import PostMdNode from "../../components/Post/PostMd/PostMdNode";
+import PostSmNode from "../../components/Post/PostSm/PostSmNode";
+import PostXL from "../../components/Post/PostXl/PostXL";
+import AppsMdNode from "../../components/App/AppMd/AppsMdNode";
+import AppLgNode from "../../components/App/AppLg/AppLgNode";
+import Footer from "../../components/Footer/Footer";
 const Discover = () => {
-  const { data, loading, error } = useGetAppsListQuery({
-    variables: {
-      page: 1,
-    },
-  });
-  if (error) {
-    return <div>ERROR</div>;
-  }
-  if (loading || !data) {
-    return <Loading />;
-  }
   return (
     <div className="h-full bg">
       <Sections border={false}>
-        <Posts.lg data={tempDataPostsLG} />
+        <PostXL id="1" />
       </Sections>
       <Sections border={true}>
-        <Posts.md data={tempDataPostsMD} />
+        <PostMdNode category={2} />
       </Sections>
       <Sections border={true} title="Editors Choice">
-        <Apps.md data={data?.appsList as AppsNode[]} />
+        <AppsMdNode category={1} />
       </Sections>
       <Sections border={true} title="Do more with MacOs bigSur">
-        <Posts.sm data={tempDataPostsMD} />
+        <PostSmNode category={2} />
       </Sections>
+      <Sections border={true} title="Test Apps">
+        <AppLgNode category={1} />
+      </Sections>
+      <Footer />
     </div>
   );
 };

@@ -1,0 +1,11 @@
+query GetPost($id:ID) {
+    post(postId: $id) {
+        id
+        created
+        title
+        miniTitle
+        body
+        postImages{
+            url
+        }
+    }}

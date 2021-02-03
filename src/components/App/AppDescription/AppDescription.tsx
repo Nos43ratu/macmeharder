@@ -1,5 +1,5 @@
 import React from "react";
-import { AppsNode } from "../../generated/graphql";
+import { AppsNode } from "../../../generated/graphql";
 
 const AppDescription = () => {
   return <div>dasadda</div>;

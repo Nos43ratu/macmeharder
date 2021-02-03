@@ -17,6 +17,9 @@ query GetAppQuery($id:ID!) {
         developer
         chart
         version
+        appAvatar {
+            url
+        }
         compatibility
         appImages{
             url

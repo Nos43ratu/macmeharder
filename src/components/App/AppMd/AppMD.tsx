@@ -1,20 +1,20 @@
 import React from "react";
-import { AppMDMDPropsType } from "../../types/AppPropsTypes";
 import Link from "next/link";
-import { AppsNode } from "../../generated/graphql";
-export type appmd = {
+import { AppsNode } from "../../../generated/graphql";
+export type Props = {
   data: AppsNode;
   withBorder?: boolean;
 };
 
-const AppMd = ({ data, withBorder = true }: appmd) => {
+const AppMd = ({ data, withBorder = true }: Props) => {
+  console.log(data.appAvatar);
   return (
     <Link href={`/app/${data.id}`}>
       <div className="flex items-center overflow-hidden cursor-pointer">
         <img
           src={
             (process.env.NEXT_PUBLIC_APP_URI || "") +
-            (data?.appImages[0]?.url || "")
+            (data?.appAvatar[0]?.url || "")
           }
           alt=""
           className="w-10 h-10 rounded-lg"

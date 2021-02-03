@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { PostNode } from "../../../generated/graphql";
 import { createPortal } from "react-dom";
-import { PostMDPropsType } from "../../types/PostPropsTypes";
-import { popUpPost } from "../../utils/popUp";
-import PostPopUp from "./PostPopUp";
-import Layout from "../../Layout";
+import PostPopUp from "../PostPopUp/PostPopUp";
 
-const PostMd = ({ data }: PostMDPropsType) => {
+const PostLg = ({ data }: { data: PostNode }) => {
   const wrapper = document.getElementById("wrapper");
   const [open, setOpen] = useState(false);
   const [animation, setAnimation] = useState(false);
@@ -17,31 +15,28 @@ const PostMd = ({ data }: PostMDPropsType) => {
         setOpen(!open);
       };
   };
+  const imgURL = `${process.env.NEXT_PUBLIC_APP_URI}${data?.postImages[0]?.url}`;
   return (
     <>
       <div
-        className="w-full cursor-pointer h-56 bg-tuna rounded-lg flex overflow-hidden"
+        className="w-full  flex-col cursor-pointer h-80 flex overflow-hidden mt-10"
         onClick={() => {
           setAnimation(!animation);
           if (wrapper) wrapper.style.overflow = "hidden";
           setOpen(!open);
         }}
       >
-        <div className="flex flex-1 flex-col text-santosGray md:pt-6 md:px-8 pt-3 px-3 justify-center">
-          <div className="text-xs uppercase font-bold clamp-1">
-            {data.title1}
+        <div className="flex flex-col text-santosGray justify-start md:justify-start">
+          <div className="text-xs uppercase text-dodgerBlue clamp-1">
+            {data.miniTitle}
           </div>
-          <div className="text-white text-2xl clamp-2 overflow-ellipsis overflow-hidden">
-            {data.title2}
+          <div className="text-white text-sm clamp-2 overflow-ellipsis overflow-hidden">
+            {data.title}
           </div>
-          <div className="text-sm mt-3 clamp-3">{data.description}</div>
+          <div className="text-base clamp-1 md:clamp-2">{data.body}</div>
         </div>
-        <div className="flex flex-1 justify-center items-center pr-3 ">
-          <img
-            src={data.img}
-            className="w-24 h-24 md:w-40 md:h-40 rounded-full"
-            alt="post"
-          />
+        <div className="w-full h-full flex flex-1 justify-center items-center pr-3 ">
+          <img src={imgURL} className="w-full h-full rounded-lg" alt="post" />
         </div>
       </div>
       {open &&
@@ -78,5 +73,4 @@ const PostMd = ({ data }: PostMDPropsType) => {
     </>
   );
 };
-
-export default PostMd;
+export default PostLg;

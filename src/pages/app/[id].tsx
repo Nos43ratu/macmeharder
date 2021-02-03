@@ -6,11 +6,11 @@ import {
   AppsNode,
   ImagesNode,
 } from "../../generated/graphql";
-import AppXl from "../../components/App/AppXL";
+import AppXl from "../../components/App/AppXl/AppXL";
 import Sections from "../../components/Section/Sections";
-import Apps from "../../components/App/Apps";
-import AppDescription from "../../components/App/AppDescription";
+import AppDescription from "../../components/App/AppDescription/AppDescription";
 import Loading from "../../components/FetchingStates/Loading";
+import AppImgPreviewNode from "../../components/App/AppImgPreview/AppImgPreviewNode";
 
 const AppPage = () => {
   const { data, loading, error } = useGetAppQueryQuery({
@@ -30,7 +30,7 @@ const AppPage = () => {
         <AppXl app={data?.app as AppsNode} />
       </Sections>
       <Sections border={false}>
-        <Apps.imgPreview data={data?.app?.appImages as ImagesNode[]} />
+        <AppImgPreviewNode data={data?.app?.appImages as ImagesNode[]} />
       </Sections>
       <Sections>
         <AppDescription.text description={data?.app?.description} />

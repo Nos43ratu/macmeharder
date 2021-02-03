@@ -12,6 +12,14 @@ export type Scalars = {
   DateTime: any;
 };
 
+export type AppAvatarNode = {
+  __typename?: 'AppAvatarNode';
+  id: Scalars['ID'];
+  image: Scalars['String'];
+  app: AppsNode;
+  url?: Maybe<Scalars['String']>;
+};
+
 export type AppCategoryNode = {
   __typename?: 'AppCategoryNode';
   id: Scalars['ID'];
@@ -36,7 +44,9 @@ export type AppsNode = {
   chart?: Maybe<Scalars['String']>;
   version?: Maybe<Scalars['String']>;
   compatibility?: Maybe<Scalars['String']>;
+  downloadUrl?: Maybe<Scalars['String']>;
   appImages: Array<ImagesNode>;
+  appAvatar: Array<AppAvatarNode>;
 };
 
 
@@ -77,6 +87,7 @@ export type PostImageNode = {
   image: Scalars['String'];
   isAvatar: Scalars['Boolean'];
   post: PostNode;
+  url?: Maybe<Scalars['String']>;
 };
 
 export type PostNode = {
@@ -95,12 +106,26 @@ export type Query = {
   appCategories?: Maybe<Array<Maybe<AppCategoryNode>>>;
   appImages?: Maybe<Array<Maybe<ImagesNode>>>;
   app?: Maybe<AppsNode>;
+  appAvatar?: Maybe<AppAvatarNode>;
   post?: Maybe<PostNode>;
   postList?: Maybe<Array<Maybe<PostNode>>>;
 };
 
 
 export type QueryAppsListArgs = {
+  page?: Maybe<Scalars['Int']>;
+  count?: Maybe<Scalars['Int']>;
+  category?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryAppCategoriesArgs = {
+  page?: Maybe<Scalars['Int']>;
+  count?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryAppImagesArgs = {
   page?: Maybe<Scalars['Int']>;
   count?: Maybe<Scalars['Int']>;
 };
@@ -111,6 +136,18 @@ export type QueryAppArgs = {
 };
 
 
+export type QueryAppAvatarArgs = {
+  appAvatarId?: Maybe<Scalars['ID']>;
+};
+
+
 export type QueryPostArgs = {
   postId?: Maybe<Scalars['ID']>;
+};
+
+
+export type QueryPostListArgs = {
+  page?: Maybe<Scalars['Int']>;
+  count?: Maybe<Scalars['Int']>;
+  category?: Maybe<Scalars['Int']>;
 };

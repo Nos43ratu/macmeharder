@@ -14,6 +14,14 @@ export type Scalars = {
   DateTime: any;
 };
 
+export type AppAvatarNode = {
+  __typename?: 'AppAvatarNode';
+  id: Scalars['ID'];
+  image: Scalars['String'];
+  app: AppsNode;
+  url?: Maybe<Scalars['String']>;
+};
+
 export type AppCategoryNode = {
   __typename?: 'AppCategoryNode';
   id: Scalars['ID'];
@@ -38,7 +46,9 @@ export type AppsNode = {
   chart?: Maybe<Scalars['String']>;
   version?: Maybe<Scalars['String']>;
   compatibility?: Maybe<Scalars['String']>;
+  downloadUrl?: Maybe<Scalars['String']>;
   appImages: Array<ImagesNode>;
+  appAvatar: Array<AppAvatarNode>;
 };
 
 
@@ -79,6 +89,7 @@ export type PostImageNode = {
   image: Scalars['String'];
   isAvatar: Scalars['Boolean'];
   post: PostNode;
+  url?: Maybe<Scalars['String']>;
 };
 
 export type PostNode = {
@@ -97,12 +108,26 @@ export type Query = {
   appCategories?: Maybe<Array<Maybe<AppCategoryNode>>>;
   appImages?: Maybe<Array<Maybe<ImagesNode>>>;
   app?: Maybe<AppsNode>;
+  appAvatar?: Maybe<AppAvatarNode>;
   post?: Maybe<PostNode>;
   postList?: Maybe<Array<Maybe<PostNode>>>;
 };
 
 
 export type QueryAppsListArgs = {
+  page?: Maybe<Scalars['Int']>;
+  count?: Maybe<Scalars['Int']>;
+  category?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryAppCategoriesArgs = {
+  page?: Maybe<Scalars['Int']>;
+  count?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryAppImagesArgs = {
   page?: Maybe<Scalars['Int']>;
   count?: Maybe<Scalars['Int']>;
 };
@@ -113,9 +138,82 @@ export type QueryAppArgs = {
 };
 
 
+export type QueryAppAvatarArgs = {
+  appAvatarId?: Maybe<Scalars['ID']>;
+};
+
+
 export type QueryPostArgs = {
   postId?: Maybe<Scalars['ID']>;
 };
+
+
+export type QueryPostListArgs = {
+  page?: Maybe<Scalars['Int']>;
+  count?: Maybe<Scalars['Int']>;
+  category?: Maybe<Scalars['Int']>;
+};
+
+export type GetAppsListQueryVariables = Exact<{
+  page?: Maybe<Scalars['Int']>;
+  count?: Maybe<Scalars['Int']>;
+  category?: Maybe<Scalars['Int']>;
+}>;
+
+
+export type GetAppsListQuery = (
+  { __typename?: 'Query' }
+  & { appsList?: Maybe<Array<Maybe<(
+    { __typename?: 'AppsNode' }
+    & Pick<AppsNode, 'id' | 'title' | 'description'>
+    & { appAvatar: Array<(
+      { __typename?: 'AppAvatarNode' }
+      & Pick<AppAvatarNode, 'url'>
+    )>, category: (
+      { __typename?: 'AppCategoryNode' }
+      & Pick<AppCategoryNode, 'id' | 'name'>
+    ), appImages: Array<(
+      { __typename?: 'ImagesNode' }
+      & Pick<ImagesNode, 'url'>
+    )> }
+  )>>> }
+);
+
+export type GetPostListQueryVariables = Exact<{
+  page?: Maybe<Scalars['Int']>;
+  count?: Maybe<Scalars['Int']>;
+  category: Scalars['Int'];
+}>;
+
+
+export type GetPostListQuery = (
+  { __typename?: 'Query' }
+  & { postList?: Maybe<Array<Maybe<(
+    { __typename?: 'PostNode' }
+    & Pick<PostNode, 'id' | 'title' | 'miniTitle' | 'body'>
+    & { postImages: Array<(
+      { __typename?: 'PostImageNode' }
+      & Pick<PostImageNode, 'url'>
+    )> }
+  )>>> }
+);
+
+export type GetPostQueryVariables = Exact<{
+  id?: Maybe<Scalars['ID']>;
+}>;
+
+
+export type GetPostQuery = (
+  { __typename?: 'Query' }
+  & { post?: Maybe<(
+    { __typename?: 'PostNode' }
+    & Pick<PostNode, 'id' | 'created' | 'title' | 'miniTitle' | 'body'>
+    & { postImages: Array<(
+      { __typename?: 'PostImageNode' }
+      & Pick<PostImageNode, 'url'>
+    )> }
+  )> }
+);
 
 export type GetAppQueryQueryVariables = Exact<{
   id: Scalars['ID'];
@@ -130,34 +228,145 @@ export type GetAppQueryQuery = (
     & { category: (
       { __typename?: 'AppCategoryNode' }
       & Pick<AppCategoryNode, 'id' | 'name'>
-    ), appImages: Array<(
+    ), appAvatar: Array<(
+      { __typename?: 'AppAvatarNode' }
+      & Pick<AppAvatarNode, 'url'>
+    )>, appImages: Array<(
       { __typename?: 'ImagesNode' }
       & Pick<ImagesNode, 'url'>
     )> }
   )> }
 );
 
-export type GetAppsListQueryVariables = Exact<{
-  page: Scalars['Int'];
-}>;
 
+export const GetAppsListDocument = gql`
+    query GetAppsList($page: Int, $count: Int, $category: Int) {
+  appsList(page: $page, count: $count, category: $category) {
+    id
+    title
+    appAvatar {
+      url
+    }
+    description
+    category {
+      id
+      name
+    }
+    appImages {
+      url
+    }
+  }
+}
+    `;
 
-export type GetAppsListQuery = (
-  { __typename?: 'Query' }
-  & { appsList?: Maybe<Array<Maybe<(
-    { __typename?: 'AppsNode' }
-    & Pick<AppsNode, 'id' | 'title' | 'description'>
-    & { category: (
-      { __typename?: 'AppCategoryNode' }
-      & Pick<AppCategoryNode, 'id' | 'name'>
-    ), appImages: Array<(
-      { __typename?: 'ImagesNode' }
-      & Pick<ImagesNode, 'url'>
-    )> }
-  )>>> }
-);
+/**
+ * __useGetAppsListQuery__
+ *
+ * To run a query within a React component, call `useGetAppsListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAppsListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAppsListQuery({
+ *   variables: {
+ *      page: // value for 'page'
+ *      count: // value for 'count'
+ *      category: // value for 'category'
+ *   },
+ * });
+ */
+export function useGetAppsListQuery(baseOptions?: Apollo.QueryHookOptions<GetAppsListQuery, GetAppsListQueryVariables>) {
+        return Apollo.useQuery<GetAppsListQuery, GetAppsListQueryVariables>(GetAppsListDocument, baseOptions);
+      }
+export function useGetAppsListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAppsListQuery, GetAppsListQueryVariables>) {
+          return Apollo.useLazyQuery<GetAppsListQuery, GetAppsListQueryVariables>(GetAppsListDocument, baseOptions);
+        }
+export type GetAppsListQueryHookResult = ReturnType<typeof useGetAppsListQuery>;
+export type GetAppsListLazyQueryHookResult = ReturnType<typeof useGetAppsListLazyQuery>;
+export type GetAppsListQueryResult = Apollo.QueryResult<GetAppsListQuery, GetAppsListQueryVariables>;
+export const GetPostListDocument = gql`
+    query GetPostList($page: Int, $count: Int, $category: Int!) {
+  postList(page: $page, count: $count, category: $category) {
+    id
+    title
+    miniTitle
+    body
+    postImages {
+      url
+    }
+  }
+}
+    `;
 
+/**
+ * __useGetPostListQuery__
+ *
+ * To run a query within a React component, call `useGetPostListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPostListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetPostListQuery({
+ *   variables: {
+ *      page: // value for 'page'
+ *      count: // value for 'count'
+ *      category: // value for 'category'
+ *   },
+ * });
+ */
+export function useGetPostListQuery(baseOptions: Apollo.QueryHookOptions<GetPostListQuery, GetPostListQueryVariables>) {
+        return Apollo.useQuery<GetPostListQuery, GetPostListQueryVariables>(GetPostListDocument, baseOptions);
+      }
+export function useGetPostListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetPostListQuery, GetPostListQueryVariables>) {
+          return Apollo.useLazyQuery<GetPostListQuery, GetPostListQueryVariables>(GetPostListDocument, baseOptions);
+        }
+export type GetPostListQueryHookResult = ReturnType<typeof useGetPostListQuery>;
+export type GetPostListLazyQueryHookResult = ReturnType<typeof useGetPostListLazyQuery>;
+export type GetPostListQueryResult = Apollo.QueryResult<GetPostListQuery, GetPostListQueryVariables>;
+export const GetPostDocument = gql`
+    query GetPost($id: ID) {
+  post(postId: $id) {
+    id
+    created
+    title
+    miniTitle
+    body
+    postImages {
+      url
+    }
+  }
+}
+    `;
 
+/**
+ * __useGetPostQuery__
+ *
+ * To run a query within a React component, call `useGetPostQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPostQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetPostQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetPostQuery(baseOptions?: Apollo.QueryHookOptions<GetPostQuery, GetPostQueryVariables>) {
+        return Apollo.useQuery<GetPostQuery, GetPostQueryVariables>(GetPostDocument, baseOptions);
+      }
+export function useGetPostLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetPostQuery, GetPostQueryVariables>) {
+          return Apollo.useLazyQuery<GetPostQuery, GetPostQueryVariables>(GetPostDocument, baseOptions);
+        }
+export type GetPostQueryHookResult = ReturnType<typeof useGetPostQuery>;
+export type GetPostLazyQueryHookResult = ReturnType<typeof useGetPostLazyQuery>;
+export type GetPostQueryResult = Apollo.QueryResult<GetPostQuery, GetPostQueryVariables>;
 export const GetAppQueryDocument = gql`
     query GetAppQuery($id: ID!) {
   app(appId: $id) {
@@ -178,6 +387,9 @@ export const GetAppQueryDocument = gql`
     developer
     chart
     version
+    appAvatar {
+      url
+    }
     compatibility
     appImages {
       url
@@ -211,45 +423,3 @@ export function useGetAppQueryLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
 export type GetAppQueryQueryHookResult = ReturnType<typeof useGetAppQueryQuery>;
 export type GetAppQueryLazyQueryHookResult = ReturnType<typeof useGetAppQueryLazyQuery>;
 export type GetAppQueryQueryResult = Apollo.QueryResult<GetAppQueryQuery, GetAppQueryQueryVariables>;
-export const GetAppsListDocument = gql`
-    query GetAppsList($page: Int!) {
-  appsList(page: $page) {
-    id
-    title
-    description
-    category {
-      id
-      name
-    }
-    appImages {
-      url
-    }
-  }
-}
-    `;
-
-/**
- * __useGetAppsListQuery__
- *
- * To run a query within a React component, call `useGetAppsListQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetAppsListQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetAppsListQuery({
- *   variables: {
- *      page: // value for 'page'
- *   },
- * });
- */
-export function useGetAppsListQuery(baseOptions: Apollo.QueryHookOptions<GetAppsListQuery, GetAppsListQueryVariables>) {
-        return Apollo.useQuery<GetAppsListQuery, GetAppsListQueryVariables>(GetAppsListDocument, baseOptions);
-      }
-export function useGetAppsListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAppsListQuery, GetAppsListQueryVariables>) {
-          return Apollo.useLazyQuery<GetAppsListQuery, GetAppsListQueryVariables>(GetAppsListDocument, baseOptions);
-        }
-export type GetAppsListQueryHookResult = ReturnType<typeof useGetAppsListQuery>;
-export type GetAppsListLazyQueryHookResult = ReturnType<typeof useGetAppsListLazyQuery>;
-export type GetAppsListQueryResult = Apollo.QueryResult<GetAppsListQuery, GetAppsListQueryVariables>;
