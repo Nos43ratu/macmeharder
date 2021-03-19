@@ -11,7 +11,7 @@ type Props = {
 };
 
 const AppLgNode = ({ data }: Props) => {
-  SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
+  if (data) SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
   return (
     <div className="h-64">
       <Swiper

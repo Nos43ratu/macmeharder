@@ -4,9 +4,6 @@ type AppXlPropsType = {
   app?: AppsNode;
 };
 const AppXl = ({ app }: AppXlPropsType) => {
-  if (!app) {
-    return <div>Cant load image</div>;
-  }
   return (
     <div className="flex h-32 pb-4 items-center overflow-hidden border-b border-tuna">
       <img

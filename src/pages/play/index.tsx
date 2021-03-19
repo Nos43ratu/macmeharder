@@ -4,8 +4,9 @@ import PostLgNode from "../../components/Post/PostLg/PostLgNode";
 import AppLgNode from "../../components/App/AppLg/AppLgNode";
 import PostSmNode from "../../components/Post/PostSm/PostSmNode";
 import Footer from "../../components/Footer/Footer";
+import { getAppList, getPostList } from "../../pagesData/getData";
 
-const Play = () => {
+const Play = ({ data }) => {
   return (
     <div className="h-full bg">
       <div className="mt-10 pt-2 pb-3 text-2xl md:px-10 px-4 font-bold">
@@ -13,19 +14,19 @@ const Play = () => {
       </div>
       <div className="border-b md:mx-10 mx-4 border-tuna" />
       <Sections>
-        <PostLgNode category={2} />
+        <PostLgNode data={data?.PostLG} />
       </Sections>
       <Sections title="Edit photos and images">
-        <AppLgNode category={1} />
+        <AppLgNode data={data?.AppLG1} />
       </Sections>
       <Sections title="Create Design Masterpiece">
-        <AppLgNode category={1} />
+        <AppLgNode data={data?.AppLG2} />
       </Sections>
       <Sections title="Create Design Masterpiece">
-        <PostSmNode category={2} />
+        <PostSmNode data={data?.PostSM} />
       </Sections>
       <Sections title="Create Design Masterpiece">
-        <AppLgNode category={1} />
+        <AppLgNode data={data?.AppLG3} />
       </Sections>
       <Footer />
     </div>
@@ -33,3 +34,23 @@ const Play = () => {
 };
 
 export default Play;
+
+export async function getStaticProps() {
+  const PostLG = await getPostList(2);
+  const AppLG1 = await getAppList(2);
+  const AppLG2 = await getAppList(2);
+  const AppLG3 = await getAppList(2);
+  const PostSM = await getPostList(2);
+
+  return {
+    props: {
+      data: {
+        PostLG,
+        AppLG3,
+        AppLG1,
+        AppLG2,
+        PostSM,
+      },
+    },
+  };
+}

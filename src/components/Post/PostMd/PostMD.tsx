@@ -9,27 +9,12 @@ const PostMd = ({ data }: { data: PostNode }) => {
     wrapper = document.getElementById("wrapper");
   }
   const [open, setOpen] = useState(false);
-  const [animation, setAnimation] = useState(false);
-  const close = () => {
-    setAnimation(!animation);
-    console.log("animation setted");
-    const popup = document.getElementById("popUp");
-    console.log("het ppop elem");
-    if (popup !== null) {
-      console.log(popup);
-      popup.addEventListener("animationend", () => {
-        console.log("stage2");
-        setOpen(!open);
-      });
-    }
-  };
   const imgURL = `${process.env.NEXT_PUBLIC_APP_URI}${data?.postImages[0]?.url}`;
   return (
     <>
       <div
         className="w-full cursor-pointer h-56 bg-tuna rounded-lg flex overflow-hidden"
         onClick={() => {
-          setAnimation(!animation);
           if (wrapper) wrapper.style.overflow = "hidden";
           setOpen(!open);
         }}
@@ -55,17 +40,13 @@ const PostMd = ({ data }: { data: PostNode }) => {
         wrapper &&
         createPortal(
           <div
-            className={`fixed w-full h-full top-0 left-0 z-10 animate-${
-              animation ? "right" : "left"
-            }-slide `}
+            className={`fixed w-full h-full top-0 left-0 z-10 animate-right-slide `}
             id="popUp"
           >
             <div
-              className={`animate-${
-                animation ? "right" : "left"
-              }-slide fixed z-20 left-0 top-0 flex justify-center rounded cursor-pointer items-center fill-current text-santosGray transform rotate-180 w-4 h-4 bg-santosGray bg-opacity-25 ml-12 mt-5`}
+              className={`animate-right-slide fixed z-20 left-0 top-0 flex justify-center rounded cursor-pointer items-center fill-current text-santosGray transform rotate-180 w-4 h-4 bg-santosGray bg-opacity-25 ml-12 mt-5`}
               onClick={() => {
-                close();
+                setOpen(!open);
                 if (wrapper) wrapper.style.overflow = "visible";
               }}
             >

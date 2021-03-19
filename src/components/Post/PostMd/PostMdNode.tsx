@@ -1,14 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import PostMD from "./PostMD";
-import { PostNode, useGetPostListQuery } from "../../../generated/graphql";
-import Loading from "../../FetchingStates/Loading";
+import { PostNode } from "../../../generated/graphql";
 type Props = {
-  data: PostNode[];
+  data?: PostNode[];
 };
 const PostMdNode = ({ data }: Props) => {
-  console.log(data);
   SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
   return (
     <div className="h-56">

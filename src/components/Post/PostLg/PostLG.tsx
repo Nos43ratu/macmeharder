@@ -4,7 +4,10 @@ import { createPortal } from "react-dom";
 import PostPopUp from "../PostPopUp/PostPopUp";
 
 const PostLg = ({ data }: { data: PostNode }) => {
-  const wrapper = document.getElementById("wrapper");
+  let wrapper;
+  if (typeof window !== "undefined") {
+    wrapper = document.getElementById("wrapper");
+  }
   const [open, setOpen] = useState(false);
   const [animation, setAnimation] = useState(false);
   const close = () => {

@@ -9,13 +9,14 @@ import {
 import { NodePerElements } from "../../../utils/ArrayWithNodes";
 import AppMd from "./AppMD";
 import Loading from "../../FetchingStates/Loading";
+import { getAppList } from "../../../pagesData/getData";
 
 type Props = {
-  data: AppsNode[];
+  data?: AppsNode[];
 };
 
 const AppsMdNode = ({ data }: Props) => {
-  SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
+  if (data) SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
   return (
     <div className="h-48">
       <Swiper

@@ -2,6 +2,7 @@ import React from "react";
 import { useGetPostQuery } from "../../../generated/graphql";
 import Loading from "../../FetchingStates/Loading";
 import { PostNode } from "../../../types";
+import { getPost } from "../../../pagesData/getData";
 type Props = {
   data: PostNode;
 };

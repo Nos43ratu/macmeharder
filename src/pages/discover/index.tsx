@@ -6,25 +6,25 @@ import PostXL from "../../components/Post/PostXl/PostXL";
 import AppsMdNode from "../../components/App/AppMd/AppsMdNode";
 import AppLgNode from "../../components/App/AppLg/AppLgNode";
 import Footer from "../../components/Footer/Footer";
-import { discoverData } from "../../pagesData/discoverData";
+import { getAppList, getPost, getPostList } from "../../pagesData/getData";
 
 const Discover = ({ data }) => {
   return (
-    <div className="h-full bg">
+    <div className="h-full">
       <Sections border={false}>
-        <PostXL data={data.PostXL.data.post} />
+        <PostXL data={data?.PostXL} />
       </Sections>
       <Sections border={true}>
-        <PostMdNode data={data.PostMD.data.postList} />
+        <PostMdNode data={data?.PostMD} />
       </Sections>
       <Sections border={true} title="Editors Choice">
-        <AppsMdNode data={data.AppMD.data.appsList} />
+        <AppsMdNode data={data?.AppMD} />
       </Sections>
       <Sections border={true} title="Do more with MacOs bigSur">
-        <PostSmNode data={data.PostSM.data.postList} />
+        <PostSmNode data={data?.PostSM} />
       </Sections>
       <Sections border={true} title="Test Apps">
-        <AppLgNode data={data.AppLG.data.appsList} />
+        <AppLgNode data={data?.AppLG} />
       </Sections>
       <Footer />
     </div>
@@ -34,7 +34,11 @@ const Discover = ({ data }) => {
 export default Discover;
 
 export async function getStaticProps() {
-  const { PostXL, PostMD, PostSM, AppMD, AppLG } = discoverData();
+  const PostXL = await getPost(1);
+  const PostMD = await getPostList(2);
+  const PostSM = await getPostList(1);
+  const AppMD = await getAppList(1);
+  const AppLG = await getAppList(1);
   return {
     props: {
       data: {
