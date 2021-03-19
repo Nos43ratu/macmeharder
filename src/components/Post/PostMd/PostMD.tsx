@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import PostPopUp from "../PostPopUp/PostPopUp";
 import { PostNode } from "../../../generated/graphql";
@@ -6,14 +6,20 @@ import { PostNode } from "../../../generated/graphql";
 const PostMd = ({ data }: { data: PostNode }) => {
   const wrapper = document.getElementById("wrapper");
   const [open, setOpen] = useState(false);
+  useEffect(() => console.log(open), [open]);
   const [animation, setAnimation] = useState(false);
   const close = () => {
     setAnimation(!animation);
+    console.log("animation setted");
     const popup = document.getElementById("popUp");
-    if (popup !== null)
-      popup.onanimationend = () => {
+    console.log("het ppop elem");
+    if (popup !== null) {
+      console.log(popup);
+      popup.addEventListener("animationend", () => {
+        console.log("stage2");
         setOpen(!open);
-      };
+      });
+    }
   };
   const imgURL = `${process.env.NEXT_PUBLIC_APP_URI}${data?.postImages[0]?.url}`;
   return (
