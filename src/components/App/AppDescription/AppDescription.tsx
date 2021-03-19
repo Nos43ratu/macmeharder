@@ -8,7 +8,7 @@ const text = ({ description }) => {
   if (!description) {
     return <div> Cannot load </div>;
   }
-  return <div className="text-lg">{description}</div>;
+  return <p className="text-lg">{description}</p>;
 };
 const info = ({ app }) => {
   if (!app) {
@@ -18,30 +18,30 @@ const info = ({ app }) => {
     <div className="w-full flex pb-9 mb-3 flex flex-col">
       <div className="flex w-full pb-10 pt-3">
         <div className="flex flex-col flex-1">
-          <div className="text-santosGray text-xm">Provider</div>
-          <div className="text-xm">{app.developer}</div>
+          <h3 className="text-santosGray text-xm">Provider</h3>
+          <span className="text-xm">{app.developer}</span>
         </div>
         <div className="flex flex-col  flex-1">
-          <div className="text-santosGray text-xm">Size</div>
-          <div className="text-xm">{app.size} MB</div>
+          <h3 className="text-santosGray text-xm">Size</h3>
+          <span className="text-xm">{app.size} MB</span>
         </div>
         <div className="flex flex-col flex-1">
-          <div className="text-santosGray text-xm">Category</div>
-          <div className="text-xm">{app.category.name}</div>
+          <h3 className="text-santosGray text-xm">Category</h3>
+          <span className="text-xm">{app.category.name}</span>
         </div>
       </div>
       <div className="flex w-full">
         <div className="flex flex-1 flex-col w-full">
-          <div className="text-santosGray text-xm">Compatibility</div>
-          <div className="text-xm">{app.compatibility}</div>
+          <h3 className="text-santosGray text-xm">Compatibility</h3>
+          <span className="text-xm">{app.compatibility}</span>
         </div>
         <div className="flex flex-1 flex-col ">
-          <div className="text-santosGray text-xm">Languages</div>
-          <div className="text-xm">{app.language}</div>
+          <h3 className="text-santosGray text-xm">Languages</h3>
+          <span className="text-xm">{app.language}</span>
         </div>
         <div className="flex flex-1 flex-col">
-          <div className="text-santosGray text-xm">Aeg Rating</div>
-          <div className="text-xm">{app.age}+</div>
+          <h3 className="text-santosGray text-xm">Aeg Rating</h3>
+          <span className="text-xm">{app.age}+</span>
         </div>
       </div>
     </div>

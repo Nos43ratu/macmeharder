@@ -5,9 +5,7 @@ const Sections = ({ children, border = true, title = undefined }) => {
   return (
     <>
       {title && (
-        <div className="pt-2 pb-3 text-2xl md:px-10 px-4 font-bold">
-          {title}
-        </div>
+        <h2 className="pt-2 pb-3 text-2xl md:px-10 px-4 font-bold">{title}</h2>
       )}
       <div className="section relative w-full md:px-10 px-4 ">{children}</div>
       {border ? (

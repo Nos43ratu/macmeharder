@@ -9,9 +9,9 @@ import { getAppList, getPostList } from "../../pagesData/getData";
 const Create = ({ data }) => {
   return (
     <div className="h-full bg">
-      <div className="mt-10 pt-2 pb-3 text-2xl md:px-10 px-4 font-bold">
+      <h1 className="mt-10 pt-2 pb-3 text-2xl md:px-10 px-4 font-bold">
         Create
-      </div>
+      </h1>
       <div className="border-b md:mx-10 mx-4 border-tuna" />
       <Sections>
         <PostLgNode data={data?.PostLG} />

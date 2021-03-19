@@ -3,9 +3,9 @@ import React from "react";
 const Footer = () => {
   return (
     <footer className="pb-5">
-      <div className="pt-2 pb-3 text-2xl md:px-10 px-4 font-bold">
+      <h3 className="pt-2 pb-3 text-2xl md:px-10 px-4 font-bold">
         Quick Links
-      </div>
+      </h3>
       <div className="section relative w-full md:px-10 px-4 flex justify-between">
         <a
           className="text-dodgerBlue flex-1"

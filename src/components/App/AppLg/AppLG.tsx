@@ -21,10 +21,10 @@ const AppLg = ({ data, withBorder = true }) => {
           }`}
         >
           <div className="flex flex-col justify-center">
-            <div className="text-lg clamp-1">{data.title} 7</div>
-            <div className="clamp-1 text-sm text-santosGray">
+            <h2 className="text-lg clamp-1">{data.title} 7</h2>
+            <p className="clamp-1 text-sm text-santosGray">
               {data.description}
-            </div>
+            </p>
           </div>
           <div className="ml-2 bg-iron rounded-3xl text-dodgerBlue py-0.5 px-5 text-xs uppercase font-bold cursor-pointer">
             Get

@@ -29,13 +29,13 @@ const PostLg = ({ data }) => {
         }}
       >
         <div className="flex flex-col text-santosGray justify-start md:justify-start">
-          <div className="text-xs uppercase text-dodgerBlue clamp-1">
+          <h2 className="text-xs uppercase text-dodgerBlue clamp-1">
             {data.miniTitle}
-          </div>
-          <div className="text-white text-sm clamp-2 overflow-ellipsis overflow-hidden">
+          </h2>
+          <h1 className="text-white text-sm clamp-2 overflow-ellipsis overflow-hidden">
             {data.title}
-          </div>
-          <div className="text-base clamp-1 md:clamp-2">{data.body}</div>
+          </h1>
+          <p className="text-base clamp-1 md:clamp-2">{data.body}</p>
         </div>
         <div className="w-full h-full flex flex-1 justify-center items-center pr-3 ">
           <img src={imgURL} className="w-full h-full rounded-lg" alt="post" />

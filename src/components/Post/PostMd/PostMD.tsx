@@ -19,13 +19,13 @@ const PostMd = ({ data }) => {
         }}
       >
         <div className="flex flex-1 flex-col text-santosGray md:pt-6 md:px-8 pt-3 px-3 justify-center md:justify-start">
-          <div className="text-xs uppercase font-bold clamp-1">
+          <h2 className="text-xs uppercase font-bold clamp-1">
             {data.miniTitle}
-          </div>
-          <div className="text-white text-2xl clamp-2 overflow-ellipsis overflow-hidden">
+          </h2>
+          <h1 className="text-white text-2xl clamp-2 overflow-ellipsis overflow-hidden">
             {data.title}
-          </div>
-          <div className="text-sm mt-3 clamp-3">{data.body}</div>
+          </h1>
+          <p className="text-sm mt-3 clamp-3">{data.body}</p>
         </div>
         <div className="flex flex-1 justify-center items-center pr-3 ">
           <img
