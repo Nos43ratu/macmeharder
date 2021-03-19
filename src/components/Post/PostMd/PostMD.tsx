@@ -4,9 +4,11 @@ import PostPopUp from "../PostPopUp/PostPopUp";
 import { PostNode } from "../../../generated/graphql";
 
 const PostMd = ({ data }: { data: PostNode }) => {
-  const wrapper = document.getElementById("wrapper");
+  let wrapper;
+  if (typeof window !== "undefined") {
+    wrapper = document.getElementById("wrapper");
+  }
   const [open, setOpen] = useState(false);
-  useEffect(() => console.log(open), [open]);
   const [animation, setAnimation] = useState(false);
   const close = () => {
     setAnimation(!animation);

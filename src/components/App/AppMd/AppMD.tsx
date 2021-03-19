@@ -7,7 +7,6 @@ export type Props = {
 };
 
 const AppMd = ({ data, withBorder = true }: Props) => {
-  console.log(data.appAvatar);
   return (
     <Link href={`/app/${data.id}`}>
       <div className="flex items-center overflow-hidden cursor-pointer">

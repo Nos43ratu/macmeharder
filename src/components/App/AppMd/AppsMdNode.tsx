@@ -1,31 +1,23 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
-import { useGetAppsListQuery, AppsNode } from "../../../generated/graphql";
+import {
+  useGetAppsListQuery,
+  AppsNode,
+  PostNode,
+} from "../../../generated/graphql";
 import { NodePerElements } from "../../../utils/ArrayWithNodes";
 import AppMd from "./AppMD";
 import Loading from "../../FetchingStates/Loading";
 
 type Props = {
-  category: number;
+  data: AppsNode[];
 };
 
-const AppsMdNode = ({ category }: Props) => {
-  const { data, loading, error } = useGetAppsListQuery({
-    variables: {
-      category,
-    },
-  });
-  if (error) {
-    return <div>ERROR</div>;
-  }
-  if (loading || !data?.appsList) {
-    return <Loading />;
-  }
-  let AppsNode = NodePerElements(data?.appsList, 3);
+const AppsMdNode = ({ data }: Props) => {
   SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
   return (
-    <>
+    <div className="h-48">
       <Swiper
         spaceBetween={20}
         slidesPerView={1}
@@ -38,7 +30,7 @@ const AppsMdNode = ({ category }: Props) => {
           1536: { slidesPerView: 5 },
         }}
       >
-        {AppsNode.map((e: AppsNode[], i: number) => (
+        {NodePerElements(data, 3).map((e: AppsNode[], i: number) => (
           <SwiperSlide key={i}>
             {e[0] && <AppMd data={e[0]} withBorder={false} />}
             {e[1] && <AppMd data={e[1]} />}
@@ -46,7 +38,7 @@ const AppsMdNode = ({ category }: Props) => {
           </SwiperSlide>
         ))}
       </Swiper>
-    </>
+    </div>
   );
 };
 

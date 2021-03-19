@@ -5,26 +5,15 @@ import { NodePerElements } from "../../../utils/ArrayWithNodes";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import AppLg from "./AppLG";
+import App from "next/app";
 type Props = {
-  category: number;
+  data: AppsNode[];
 };
 
-const AppLgNode = ({ category }: Props) => {
-  const { data, loading, error } = useGetAppsListQuery({
-    variables: {
-      category,
-    },
-  });
-  if (error) {
-    return <div>ERROR</div>;
-  }
-  if (loading || !data?.appsList) {
-    return <Loading />;
-  }
-  let AppsNode = NodePerElements(data?.appsList, 2);
+const AppLgNode = ({ data }: Props) => {
   SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
   return (
-    <>
+    <div className="h-64">
       <Swiper
         spaceBetween={20}
         slidesPerView={1}
@@ -37,14 +26,14 @@ const AppLgNode = ({ category }: Props) => {
           1536: { slidesPerView: 5 },
         }}
       >
-        {AppsNode.map((e: AppsNode[], i: number) => (
+        {NodePerElements(data, 2).map((e: AppsNode[], i: number) => (
           <SwiperSlide key={i}>
             {e[0] && <AppLg data={e[0]} withBorder={false} />}
             {e[1] && <AppLg data={e[1]} />}
           </SwiperSlide>
         ))}
       </Swiper>
-    </>
+    </div>
   );
 };
 export default AppLgNode;

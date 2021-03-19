@@ -6,24 +6,13 @@ import PostSM from "./PostSM";
 import { PostNode, useGetPostListQuery } from "../../../generated/graphql";
 import Loading from "../../FetchingStates/Loading";
 type postSmNode = {
-  category: number;
+  data: PostNode[];
 };
 
-const PostSmNode = ({ category }: postSmNode) => {
+const PostSmNode = ({ data }: postSmNode) => {
   SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
-  const { data, loading, error } = useGetPostListQuery({
-    variables: {
-      category,
-    },
-  });
-  if (error) {
-    return <div>ERROR</div>;
-  }
-  if (loading || !data?.postList) {
-    return <Loading />;
-  }
-  return data ? (
-    <>
+  return (
+    <div className="h-72">
       <Swiper
         spaceBetween={20}
         slidesPerView={1}
@@ -36,16 +25,14 @@ const PostSmNode = ({ category }: postSmNode) => {
           1536: { slidesPerView: 5 },
         }}
       >
-        {data.postList &&
-          data.postList.map((e) => (
+        {data &&
+          data.map((e) => (
             <SwiperSlide key={e?.id}>
               <PostSM data={e as PostNode} />
             </SwiperSlide>
           ))}
       </Swiper>
-    </>
-  ) : (
-    <div>cannot load</div>
+    </div>
   );
 };
 

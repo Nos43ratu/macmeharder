@@ -6,6 +6,11 @@ import { apiURL } from "./utils/URI";
 
 export const API = `http://${apiURL}/graphql/`;
 
+let localStorage;
+if (typeof window !== "undefined") {
+  localStorage = window.localStorage;
+}
+
 const httpLink = new HttpLink({
   uri: API,
   credentials: "same-origin",
@@ -41,7 +46,9 @@ const request = (operation) => {
 };
 
 const requestLink = new ApolloLink((operation, forward) => {
-  request(operation);
+  if (typeof window !== "undefined") {
+    request(operation);
+  }
   return forward(operation);
 });
 const link = ApolloLink.from([errorLink, requestLink, httpLink]);
