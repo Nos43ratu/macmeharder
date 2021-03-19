@@ -40,8 +40,7 @@ export async function getStaticPaths() {
   });
 
   const data = await res.json();
-  const apps = data.data.appsList;
-  const paths = apps.map((app) => ({
+  const paths = data.data.appsList.map((app) => ({
     params: { id: app.id },
   }));
   return { paths, fallback: false };

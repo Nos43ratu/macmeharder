@@ -78,7 +78,6 @@ body,
 .swiper-button-next::after,
 .swiper-button-prev::after {
   content: "" !important;
-  display: none;
   background: url("../images/ArrowSlider.svg") no-repeat;
   background-size: contain;
   width: 16px;
