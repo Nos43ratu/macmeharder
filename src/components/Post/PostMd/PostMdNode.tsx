@@ -1,12 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import PostMD from "./PostMD";
-import { PostNode } from "../../../generated/graphql";
-type Props = {
-  data?: PostNode[];
-};
-const PostMdNode = ({ data }: Props) => {
+const PostMdNode = ({ data }) => {
   SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
   return (
     <div className="h-56">
@@ -23,7 +19,7 @@ const PostMdNode = ({ data }: Props) => {
           data.map((e) => (
             <SwiperSlide key={e?.id}>
               <div key={e?.id}>
-                <PostMD data={e as PostNode} />
+                <PostMD data={e} />
               </div>
             </SwiperSlide>
           ))}

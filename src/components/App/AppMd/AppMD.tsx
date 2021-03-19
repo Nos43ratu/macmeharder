@@ -1,12 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { AppsNode } from "../../../generated/graphql";
-export type Props = {
-  data: AppsNode;
-  withBorder?: boolean;
-};
-
-const AppMd = ({ data, withBorder = true }: Props) => {
+const AppMd = ({ data, withBorder = true }) => {
   return (
     <Link href={`/app/${data.id}`}>
       <div className="flex items-center overflow-hidden cursor-pointer">

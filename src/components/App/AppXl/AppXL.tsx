@@ -1,9 +1,6 @@
 import React from "react";
-import { AppsNode } from "../../../generated/graphql";
-type AppXlPropsType = {
-  app?: AppsNode;
-};
-const AppXl = ({ app }: AppXlPropsType) => {
+
+const AppXl = ({ app }) => {
   return (
     <div className="flex h-32 pb-4 items-center overflow-hidden border-b border-tuna">
       <img

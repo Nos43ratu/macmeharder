@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { PostNode } from "../../../generated/graphql";
 import { createPortal } from "react-dom";
 import PostPopUp from "../PostPopUp/PostPopUp";
 
-const PostLg = ({ data }: { data: PostNode }) => {
+const PostLg = ({ data }) => {
   let wrapper;
   if (typeof window !== "undefined") {
     wrapper = document.getElementById("wrapper");

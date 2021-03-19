@@ -1,6 +1,4 @@
-import { AppsNode } from "../types";
-
-export const NodePerElements = (arr: AppsNode | any, n: number) => {
+export const NodePerElements = (arr: any, n: number) => {
   let appList: any = [];
   const handler = Array.from(arr);
   while (handler.length > 0) {

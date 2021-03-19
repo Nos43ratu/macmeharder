@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode } from "react";
 import Sidebar from "../components/Sidebar";
 
 const Layout = ({ children }: { children: ReactNode }) => {

@@ -1,7 +1,6 @@
 import React from "react";
-import { PostNode } from "../../../generated/graphql";
 
-const PostSM = ({ data }: { data: PostNode }) => {
+const PostSM = ({ data }) => {
   const imgURL = `${process.env.NEXT_PUBLIC_APP_URI}${data?.postImages[0]?.url}`;
   return (
     <div className="w-full h-72 flex flex-col overflow-hidden">

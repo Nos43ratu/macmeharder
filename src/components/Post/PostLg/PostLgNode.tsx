@@ -1,14 +1,7 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
-import { PostNode, useGetPostListQuery } from "../../../generated/graphql";
-import Loading from "../../FetchingStates/Loading";
-import PostMD from "../PostMd/PostMD";
 import PostLg from "./PostLG";
-type Props = {
-  data?: PostNode[];
-};
-const PostLgNode = ({ data }: Props) => {
+const PostLgNode = ({ data }) => {
   return (
     <div className="h-90">
       <Swiper
@@ -24,7 +17,7 @@ const PostLgNode = ({ data }: Props) => {
           data.map((e) => (
             <SwiperSlide key={e?.id}>
               <div key={e?.id}>
-                <PostLg data={e as PostNode} />
+                <PostLg data={e} />
               </div>
             </SwiperSlide>
           ))}

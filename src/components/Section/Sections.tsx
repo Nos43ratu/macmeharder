@@ -1,8 +1,7 @@
 import React from "react";
-import { SectionPropsType } from "../../types/SectionsPropsTypes";
 import "swiper/swiper-bundle.css";
 
-const Sections = ({ children, border = true, title }: SectionPropsType) => {
+const Sections = ({ children, border = true, title = undefined }) => {
   return (
     <>
       {title && (

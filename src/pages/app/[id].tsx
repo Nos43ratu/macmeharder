@@ -1,5 +1,4 @@
 import React from "react";
-import { AppsNode, ImagesNode } from "../../generated/graphql";
 import AppXl from "../../components/App/AppXl/AppXL";
 import Sections from "../../components/Section/Sections";
 import AppDescription from "../../components/App/AppDescription/AppDescription";
@@ -10,16 +9,16 @@ const AppPage = ({ App }) => {
   return (
     <div className="h-full w-full pt-16">
       <Sections border={false}>
-        <AppXl app={App as AppsNode} />
+        <AppXl app={App} />
       </Sections>
       <Sections border={false}>
-        <AppImgPreviewNode data={App?.appImages as ImagesNode[]} />
+        <AppImgPreviewNode data={App?.appImages} />
       </Sections>
       <Sections>
         <AppDescription.text description={App?.description} />
       </Sections>
       <Sections title="Information">
-        <AppDescription.info app={App as AppsNode} />
+        <AppDescription.info app={App} />
       </Sections>
     </div>
   );

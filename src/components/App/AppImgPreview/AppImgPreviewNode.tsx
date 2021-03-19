@@ -2,11 +2,8 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import { popUpImg } from "../../../utils/popUp";
-import { ImagesNode } from "../../../generated/graphql";
-type Props = {
-  data: ImagesNode[];
-};
-const AppImgPreviewNode = ({ data }: Props) => {
+
+const AppImgPreviewNode = ({ data }) => {
   SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
   return (
     <>

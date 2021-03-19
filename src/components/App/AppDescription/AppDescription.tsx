@@ -1,22 +1,16 @@
 import React from "react";
-import { AppsNode } from "../../../generated/graphql";
 
 const AppDescription = () => {
   return <div>dasadda</div>;
 };
-type AppDescriptionText = {
-  description: string | undefined | null;
-};
-const text = ({ description }: AppDescriptionText) => {
+
+const text = ({ description }) => {
   if (!description) {
     return <div> Cannot load </div>;
   }
   return <div className="text-lg">{description}</div>;
 };
-type AppDescriptionInfo = {
-  app: AppsNode | undefined | null;
-};
-const info = ({ app }: AppDescriptionInfo) => {
+const info = ({ app }) => {
   if (!app) {
     return <div> Cannot load </div>;
   }
