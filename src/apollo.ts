@@ -1,71 +1,93 @@
-import { useMemo } from "react";
-import {
-  ApolloClient,
-  HttpLink,
-  InMemoryCache,
-  NormalizedCacheObject,
-} from "@apollo/client";
-import { concatPagination } from "@apollo/client/utilities";
+import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { onError } from "apollo-link-error";
+import { ApolloLink } from "apollo-link";
+import { HttpLink } from "apollo-link-http";
+import { apiURL } from "./utils/URI";
 
-export const APOLLO_STATE_PROP_NAME = "__APOLLO_STATE__";
+export const API = `http://${apiURL}/graphql/`;
 
-let apolloClient: ApolloClient<NormalizedCacheObject>;
+const httpLink = new HttpLink({
+  uri: API,
+  credentials: "same-origin",
+  fetchOptions: {
+    mode: "cors",
+  },
+});
 
-function createApolloClient() {
-  return new ApolloClient({
-    connectToDevTools: true,
-    ssrMode: typeof window === "undefined",
-    link: new HttpLink({
-      uri: process.env.NEXT_PUBLIC_APP_GRAPHQL_URI, // Server URL (must be absolute)
-      credentials: "same-origin", // Additional fetch() options like `credentials` or `headers`
-    }),
-    cache: new InMemoryCache({
-      typePolicies: {
-        Query: {
-          fields: {
-            allPosts: concatPagination(),
-          },
-        },
-      },
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors) {
+    console.log("graphQLErrors", graphQLErrors);
+  }
+  if (networkError) {
+    console.log("networkError", networkError);
+  }
+});
+const request = (operation) => {
+  let token = JSON.parse(localStorage.getItem("tokenData"));
+  if (token && token.expiresIn < new Date().getTime()) {
+    try {
+      token = refreshToken(token.value, token.refreshToken);
+    } catch (e) {
+      localStorage.removeItem("tokenData");
+      window.location.href = "/sign-in";
+      throw new Error("Failed to fetch fresh access token");
+    }
+  }
+  operation.setContext({
+    headers: {
+      authorization: token ? `Bearer ${token.value}` : "",
+    },
+  });
+};
+
+const requestLink = new ApolloLink((operation, forward) => {
+  request(operation);
+  return forward(operation);
+});
+const link = ApolloLink.from([errorLink, requestLink, httpLink]);
+
+export const refreshToken = async (token, refreshToken) => {
+  const fetchResult = await fetch(API, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      query: `
+      mutation {
+        guest {
+          users {
+            refreshSession(refreshToken: "${refreshToken}" ) {
+              value
+              refreshToken
+              expiresIn
+            }
+          }
+        }
+      }
+    `,
     }),
   });
-}
 
-export function initializeApollo(initialState = null) {
-  const _apolloClient = apolloClient ?? createApolloClient();
+  const refreshResponse = await fetchResult.json();
 
-  // If your page has Next.js data fetching methods that use Apollo Client,
-  // the initial state gets hydrated here
-  if (initialState) {
-    // Get existing cache, loaded during client side data fetching
-    const existingCache = _apolloClient.extract();
+  const refreshSession = refreshResponse.data.guest.users.refreshSession;
+  localStorage.setItem(
+    "tokenData",
+    JSON.stringify({
+      expiresIn: new Date().getTime() + refreshSession.expiresIn * 1000,
+      refreshToken: refreshSession.refreshToken,
+      value: refreshSession.value,
+    })
+  );
+  return refreshSession;
+};
 
-    // Restore the cache using the data passed from
-    // getStaticProps/getServerSideProps combined with the existing cached data
-    // @ts-ignore
-    _apolloClient.cache.restore({ ...existingCache, ...initialState });
-  }
+const apolloClient = new ApolloClient({
+  // @ts-ignore
+  link: link,
+  cache: new InMemoryCache(),
+});
 
-  // For SSG and SSR always create a new Apollo Client
-  if (typeof window === "undefined") {
-    return _apolloClient;
-  }
-
-  // Create the Apollo Client once in the client
-  if (!apolloClient) apolloClient = _apolloClient;
-  return _apolloClient;
-}
-export function addApolloState(
-  client: { cache: { extract: () => any } },
-  pageProps: { props: { [x: string]: any } }
-) {
-  if (pageProps?.props) {
-    pageProps.props[APOLLO_STATE_PROP_NAME] = client.cache.extract();
-  }
-
-  return pageProps;
-}
-
-export function useApollo(initialState: null | undefined) {
-  return useMemo(() => initializeApollo(initialState), [initialState]);
-}
+export default apolloClient;
