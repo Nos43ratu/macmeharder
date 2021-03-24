@@ -1,4 +1,4 @@
-import { apiURL } from "../utils/URI";
+import { apiURL } from "./URI";
 
 export const API = `http://${apiURL}/graphql/`;
 

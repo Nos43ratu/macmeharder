@@ -3,7 +3,7 @@ import AppXl from "../../components/App/AppXl/AppXL";
 import Sections from "../../components/Section/Sections";
 import AppDescription from "../../components/App/AppDescription/AppDescription";
 import AppImgPreviewNode from "../../components/App/AppImgPreview/AppImgPreviewNode";
-import { API, getApp } from "../../pagesData/getData";
+import { API, getApp } from "../../utils/getStaticData";
 
 const AppPage = ({ App }) => {
   return (

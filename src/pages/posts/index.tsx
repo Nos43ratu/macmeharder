@@ -3,7 +3,7 @@ import Sections from "../../components/Section/Sections";
 import PostLgNode from "../../components/Post/PostLg/PostLgNode";
 import PostSmNode from "../../components/Post/PostSm/PostSmNode";
 import Footer from "../../components/Footer/Footer";
-import { getPostList } from "../../pagesData/getData";
+import { getPostList } from "../../utils/getStaticData";
 
 const PostsPage = ({ data }) => {
   return (

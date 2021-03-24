@@ -4,7 +4,7 @@ import PostLgNode from "../../components/Post/PostLg/PostLgNode";
 import AppLgNode from "../../components/App/AppLg/AppLgNode";
 import Footer from "../../components/Footer/Footer";
 import PostSmNode from "../../components/Post/PostSm/PostSmNode";
-import { getAppList, getPostList } from "../../pagesData/getData";
+import { getAppList, getPostList } from "../../utils/getStaticData";
 
 const Create = ({ data }) => {
   return (

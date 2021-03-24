@@ -1,5 +1,5 @@
 import React from "react";
-import { NodePerElements } from "../../../utils/ArrayWithNodes";
+import { NodePerElements } from "../../../utils/arrayWithNodes";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import AppLg from "./AppLG";

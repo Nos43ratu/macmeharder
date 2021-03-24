@@ -6,7 +6,7 @@ import PostXL from "../../components/Post/PostXl/PostXL";
 import AppsMdNode from "../../components/App/AppMd/AppsMdNode";
 import AppLgNode from "../../components/App/AppLg/AppLgNode";
 import Footer from "../../components/Footer/Footer";
-import { getAppList, getPost, getPostList } from "../../pagesData/getData";
+import { getAppList, getPost, getPostList } from "../../utils/getStaticData";
 
 const Discover = ({ data }) => {
   return (

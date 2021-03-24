@@ -1,7 +1,7 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
-import { NodePerElements } from "../../../utils/ArrayWithNodes";
+import { NodePerElements } from "../../../utils/arrayWithNodes";
 import AppMd from "./AppMD";
 
 const AppsMdNode = ({ data }) => {
