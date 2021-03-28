@@ -2,7 +2,7 @@ import { apiURL } from "./URI";
 
 export const API = `http://${apiURL}/graphql/`;
 
-export const getPostList = async (category) => {
+export const getPostList = async (category: number) => {
   const res = await fetch(API, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -25,7 +25,7 @@ export const getPostList = async (category) => {
   const data = await res.json();
   return data.data.postList;
 };
-export const getAppList = async (category) => {
+export const getAppList = async (category: number) => {
   const res = await fetch(API, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -54,7 +54,7 @@ export const getAppList = async (category) => {
   const data = await res.json();
   return data.data.appsList;
 };
-export const getPost = async (id) => {
+export const getPost = async (id: number) => {
   const res = await fetch(API, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -77,7 +77,7 @@ export const getPost = async (id) => {
   const data = await res.json();
   return data.data.post;
 };
-export const getApp = async (id) => {
+export const getApp = async (id: number) => {
   const res = await fetch(API, {
     method: "POST",
     headers: { "Content-Type": "application/json" },

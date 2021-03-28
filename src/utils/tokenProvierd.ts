@@ -1,3 +1,9 @@
+type Token = {
+  value: string;
+  expiresIn: number;
+  token: string;
+};
+
 export const tokenProvider = () => {
   const canUseDom = typeof window !== "undefined";
 
@@ -8,7 +14,7 @@ export const tokenProvider = () => {
     token && JSON.parse(token).value;
   };
 
-  const isLoggedIn = (): boolean => {
+  const isLoggedIn = () => {
     if (!canUseDom) return;
     return !!token;
   };
@@ -18,7 +24,7 @@ export const tokenProvider = () => {
     token && window.localStorage.removeItem("authToken");
   };
 
-  const setToken = (token): void => {
+  const setToken = (token: Token) => {
     if (!canUseDom) return;
     window.localStorage.setItem(
       "authToken",
