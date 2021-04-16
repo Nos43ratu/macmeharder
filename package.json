@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "@iamtraction/google-translate": "github:iamtraction/google-translate",
+    "cheerio": "^1.0.0-rc.6",
+    "google-translate-api": "^2.3.0",
+    "needle": "^2.6.0",
+    "node-fetch": "^2.6.1",
+    "prettier": "^2.2.1",
+    "tress": "^1.1.4",
+    "url": "^0.11.0"
+  }
+}

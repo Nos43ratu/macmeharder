@@ -1,0 +1,32 @@
+{
+    "@context": "http://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Battery Monitor: Health, Info",
+    "description": "- Более 1 МИЛЛИОНА загрузок по всему миру - Спасибо за вашу потрясающую поддержку!\n- Представлено Apple во всем мире в разделе «БЕСПЛАТНАЯ УТИЛИТА» и «ВИДЖЕТЫ ЦЕНТРА УВЕДОМЛЕНИЙ» -\n\nBattery Monitor помогает вам легко получать доступ к информации о батарее и отслеживать ее из строки меню.\n\nОсновные особенности:\n- Быстрый обзор батареи красиво отображает самую важную информацию о здоровье и состоянии вашей батареи\n- Процент заряда и время в строке меню\n- Подробная информация о батарее\n- Настраиваемое предупреждение о низком и полном заряде батареи\n- Прекрасно выглядящие темы\n\nМы хотели бы знать, как улучшить наши приложения, свяжитесь с нами в Rocky Sand Studio http://www.rockysandstudio.com",
+    "screenshot": [
+        "https://is3-ssl.mzstatic.com/image/thumb/Purple124/v4/8a/47/7e/8a477e58-ff17-e679-29ff-d775788bd30d/pr_source.png/643x0w.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/Purple124/v4/99/09/19/990919c5-e128-1870-9c01-2887b4a26a1f/mzl.aanofjqf.png/643x0w.jpg",
+        "https://is2-ssl.mzstatic.com/image/thumb/Purple124/v4/58/25/80/5825809b-ab4d-397a-f56f-eccfea57ea7c/mzl.lwteeoji.png/643x0w.jpg",
+        "https://is3-ssl.mzstatic.com/image/thumb/Purple124/v4/65/cb/f9/65cbf96a-fb3f-52c3-f116-61eb5216d874/mzl.zdrjqthd.png/643x0w.jpg"
+    ],
+    "image": "https://is4-ssl.mzstatic.com/image/thumb/Purple124/v4/46/20/58/4620586e-78b5-4090-16fa-349fe611c0dc/AppIcon-85-220-4-2x.png/1200x630bb.png",
+    "applicationCategory": "Utilities",
+    "datePublished": "Mar 22, 2014",
+    "operatingSystem": "10.10",
+    "author": {
+        "@type": "Person",
+        "name": "Rocky Sand Studio Ltd.",
+        "url": "https://apps.apple.com/us/developer/rocky-sand-studio-ltd/id457404255"
+    },
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": 4.5,
+        "reviewCount": 832
+    },
+    "offers": {
+        "@type": "Offer",
+        "price": 0,
+        "priceCurrency": "USD",
+        "category": "free"
+    }
+}
