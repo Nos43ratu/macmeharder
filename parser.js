@@ -14,7 +14,8 @@ const options = { from: "en", to: "ru" };
 const cookie =
   "session=MTYxODY2NDIwOHxEdi1CQkFFQ180SUFBUkFCRUFBQUh2LUNBQUVHYzNSeWFXNW5EQWtBQjNWelpYSmZhV1FEYVc1MEJBSUFBZz09fNB25-rYA_9CiH_F4AeWIZBX2V7aa6eVz-hrvXazWKkL";
 
-const parse = (url, t, source) => {
+const parse = (index) => {
+  const next = index + 1;
   let results;
   const q = tress(function (url, callback) {
     needle.get(url, async function (err, res) {
@@ -31,7 +32,7 @@ const parse = (url, t, source) => {
         operatingSystem: temp.operatingSystem,
         version: $(".whats-new__latest__version").text(),
         size: $("dd").contents().eq(1).text().trim(),
-        source,
+        source: apps[index].source,
       };
 
       // await translate(results.description, options).then(
@@ -47,28 +48,31 @@ const parse = (url, t, source) => {
       })
         .then((r) => r.json())
         .then((data) => {
+          console.log(data.id);
           const screenshots = new FormData();
           const image = new FormData();
           request.head(temp.image, () => {
             request(temp.image).pipe(
-              fs.createWriteStream("./icon/" + t + "icon.jpg")
+              fs.createWriteStream("./icon/" + apps[index].title + "icon.jpg")
             );
           });
           image.append(
             "icon",
-            fs.createReadStream("./icon/" + t + "icon.jpg"),
-            t + "icon.jpg"
+            fs.createReadStream("./icon/" + apps[index].title + "icon.jpg"),
+            apps[index].title + "icon.jpg"
           );
           temp.screenshot.map((e, i) => {
             request.head(e, () => {
               request(e).pipe(
-                fs.createWriteStream("./screenshots/" + t + i + ".jpg")
+                fs.createWriteStream(
+                  "./screenshots/" + apps[index].title + i + ".jpg"
+                )
               );
             });
             screenshots.append(
               "screenshots",
-              fs.createReadStream(`./screenshots/${t + i}.jpg`),
-              t + i + ".jpg"
+              fs.createReadStream(`./screenshots/${apps[index].title + i}.jpg`),
+              apps[index].title + i + ".jpg"
             );
           });
           setTimeout(() => {
@@ -82,7 +86,7 @@ const parse = (url, t, source) => {
                 body: screenshots,
               }
             ).catch((err) => console.log(err));
-          }, 1000);
+          }, 5000);
 
           setTimeout(() => {
             fetch(
@@ -95,13 +99,17 @@ const parse = (url, t, source) => {
                 body: image,
               }
             ).catch((err) => console.log(err));
-          }, 5000);
+          }, 10000);
         });
 
       callback();
     });
   }, -1000);
-  q.push(url);
+  q.push(apps[index].url, () => {
+    if (next <= apps.length - 1) {
+      parse(next);
+    }
+  });
 };
 
-apps.map((e) => parse(e.url, e.title, e.source));
+parse(0);

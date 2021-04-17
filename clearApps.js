@@ -1,7 +1,7 @@
 const fetch = require("node-fetch");
 
-let start = 40;
-let end = 80;
+let start = 81;
+let end = 676;
 
 const DeleteApplication = (index) => {
   const next = index + 1;
@@ -13,6 +13,7 @@ const DeleteApplication = (index) => {
     },
   })
     .then(() => {
+      console.log(index);
       if (next <= end) DeleteApplication(next);
     })
     .catch((err) => console.log(err));
