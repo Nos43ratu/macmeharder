@@ -5,8 +5,16 @@ const fs = require("fs");
 const translate = require("@iamtraction/google-translate");
 const { exec } = require("child_process");
 
-const apps = JSON.parse(fs.readFileSync("./apps.json", "utf8")).apps;
+// const apps = JSON.parse(fs.readFileSync("./apps.json", "utf8")).apps;
 
+const apps = [
+  {
+    id: "id1091189122",
+    title: "Bear",
+  },
+];
+
+const api = "";
 const options = { from: "en", to: "ru" };
 
 const getUrl = (id) => {
@@ -19,9 +27,29 @@ const parse = (url, t) => {
     needle.get(url, async function (err, res) {
       if (err) throw err;
       let $ = cheerio.load(res.body);
-      results = JSON.parse($("script").html());
+
+      let temp = JSON.parse($("script").html());
+      results = {
+        name: temp.name,
+        subtitle: $(".product-header__subtitle").html().trim(),
+        description: temp.description,
+        screenshot: temp.screenshot,
+        image: temp.image,
+        category: temp.applicationCategory,
+        author: temp.author.name,
+        operatingSystem: temp.operatingSystem,
+        version: $(".whats-new__latest__version").text(),
+        size: $("dd").contents().eq(1).text().trim(),
+      };
       await translate(results.description, options).then(
         (r) => (results.description = r.text)
+      );
+      await fetch(api, {
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(results),
+      }).then((r) =>
+        //ДОБАВИТЬ ID В АПП ЛИСТ ДЛЯ ЗАГРУЗКИ
+        console.log(r)
       );
       callback();
     });
@@ -34,60 +62,3 @@ const parse = (url, t) => {
 };
 
 apps.map((e) => parse(getUrl(e.id), e.title));
-
-const createDmgConfig = () => {
-  apps.map((e) => {
-    fs.writeFileSync(
-      `./auto_settings.json`,
-      JSON.stringify(
-        {
-          title: e.title,
-          background: "/Users/pobylan/Desktop/build-dmg/macme.png",
-          format: "UDZO",
-          "compression-level": 9,
-          icon: "/Users/pobylan/Desktop/build-dmg/VolumeIcon.icns",
-          "icon-size": 84,
-          window: {
-            position: {
-              x: 100,
-              y: 400,
-            },
-            size: {
-              width: 800,
-              height: 400,
-            },
-          },
-          contents: [
-            {
-              x: 300,
-              y: 267,
-              type: "file",
-              path: `/Users/pobylan/Desktop/applications/${e.title}`,
-            },
-            {
-              x: 500,
-              y: 267,
-              type: "link",
-              path: "/Applications",
-            },
-          ],
-        },
-        null
-      )
-    );
-    exec(
-      `dmgbuild -s auto_settings.json "${e.title}" "/Users/pobylan/Desktop/${e.title}.dmg"`,
-      (error, stderr) => {
-        if (error) {
-          console.log(`error: ${error.message}`);
-          return;
-        }
-        if (stderr) {
-          console.log(`stderr: ${stderr}`);
-          return;
-        }
-      }
-    );
-  });
-};
-createDmgConfig();
