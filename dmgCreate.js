@@ -1,12 +1,24 @@
 const fs = require("fs");
 const { exec } = require("child_process");
+const chalk = require("chalk");
 
 const apps = JSON.parse(fs.readFileSync("./apps.json", "utf8")).apps;
 
-const createDmgConfig = () => {
-  apps.map((e) => {
+function random_rgba() {
+  const o = Math.round,
+    r = Math.random,
+    s = 255;
+  return {
+    r: o(r() * s),
+    g: o(r() * s),
+    b: o(r() * s),
+  };
+}
+
+const CreateJSON = () => {
+  apps.map((e, i) => {
     fs.writeFileSync(
-      `./auto_settings.json`,
+      `./jsons/${e.title}.json`,
       JSON.stringify(
         {
           title: e.title,
@@ -30,7 +42,7 @@ const createDmgConfig = () => {
               x: 300,
               y: 267,
               type: "file",
-              path: `/Users/pobylan/Desktop/applications/${e.title}`,
+              path: `/Users/pobylan/Desktop/applications/${e.title}.app`,
             },
             {
               x: 500,
@@ -43,19 +55,38 @@ const createDmgConfig = () => {
         null
       )
     );
-    exec(
-      `dmgbuild -s auto_settings.json "${e.title}" "/Users/pobylan/Desktop/${e.title}.dmg"`,
-      (error, stderr) => {
-        if (error) {
-          console.log(`error: ${error.message}`);
-          return;
-        }
-        if (stderr) {
-          console.log(`stderr: ${stderr}`);
-          return;
-        }
-      }
-    );
   });
+  CreateDMG(0);
 };
-createDmgConfig();
+
+const CreateDMG = (index) => {
+  const c = random_rgba();
+  console.log(
+    chalk.rgb(c.r, c.g, c.b).bold(`Start building ${apps[index].title}`)
+  );
+  exec(
+    `dmgbuild -s "./jsons/${apps[index].title}.json" "${apps[index].title}" "/Users/pobylan/Desktop/${apps[index].title}.dmg"`,
+    (error, stdout, stderr) => {
+      if (error) {
+        console.log(chalk.bgWhite.red.bold(`error: ${error.message}`));
+        console.log(chalk.bgWhite.red.bold(`Stopped index: ${index}`));
+        return;
+      }
+      if (stderr) {
+        console.log(chalk.bgWhite.red.bold(`stderr: ${stderr}`));
+        console.log(chalk.bgWhite.red.bold(`Stopped index: ${index}`));
+        return;
+      }
+      console.log(
+        chalk.rgb(c.r, c.g, c.b).bold(`Finished build ${apps[index].title}`)
+      );
+      if (index < apps.length - 1) {
+        CreateDMG(index + 1);
+      } else {
+        console.log(chalk.bgWhite.green.bold(`Finish: ${index}`));
+      }
+    }
+  );
+};
+
+CreateJSON();

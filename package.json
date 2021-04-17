@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@iamtraction/google-translate": "github:iamtraction/google-translate",
+    "chalk": "^4.1.0",
     "cheerio": "^1.0.0-rc.6",
     "form-data": "^4.0.0",
     "google-translate-api": "^2.3.0",
