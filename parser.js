@@ -4,20 +4,15 @@ const cheerio = require("cheerio");
 const fs = require("fs");
 const fetch = require("node-fetch");
 const translate = require("@iamtraction/google-translate");
-const { exec } = require("child_process");
 const request = require("request");
 const FormData = require("form-data");
 
-const download = function (uri, filename, callback) {
-  request.head(uri, function (err, res, body) {
-    request(uri).pipe(fs.createWriteStream(filename)).on("close", callback);
-  });
-};
 const apps = JSON.parse(fs.readFileSync("./apps.json", "utf8")).apps;
 
 const api = "http://macmeharder.com:8080/private/application";
 const options = { from: "en", to: "ru" };
-
+const cookie =
+  "session=MTYxODY2NDIwOHxEdi1CQkFFQ180SUFBUkFCRUFBQUh2LUNBQUVHYzNSeWFXNW5EQWtBQjNWelpYSmZhV1FEYVc1MEJBSUFBZz09fNB25-rYA_9CiH_F4AeWIZBX2V7aa6eVz-hrvXazWKkL";
 const getUrl = (id) => {
   return "https://apps.apple.com/us/app/" + id;
 };
@@ -45,11 +40,11 @@ const parse = (url, t) => {
       await translate(results.description, options).then(
         (r) => (results.description = r.text)
       );
+
       await fetch(api, {
         method: "POST",
         headers: {
-          Cookie:
-            "session=MTYxODY2NDIwOHxEdi1CQkFFQ180SUFBUkFCRUFBQUh2LUNBQUVHYzNSeWFXNW5EQWtBQjNWelpYSmZhV1FEYVc1MEJBSUFBZz09fNB25-rYA_9CiH_F4AeWIZBX2V7aa6eVz-hrvXazWKkL",
+          cookie,
         },
         body: JSON.stringify(results),
       })
@@ -85,8 +80,7 @@ const parse = (url, t) => {
               {
                 method: "POST",
                 headers: {
-                  Cookie:
-                    "session=MTYxODY2NDIwOHxEdi1CQkFFQ180SUFBUkFCRUFBQUh2LUNBQUVHYzNSeWFXNW5EQWtBQjNWelpYSmZhV1FEYVc1MEJBSUFBZz09fNB25-rYA_9CiH_F4AeWIZBX2V7aa6eVz-hrvXazWKkL",
+                  cookie,
                 },
                 body: screenshots,
               }
@@ -99,8 +93,7 @@ const parse = (url, t) => {
               {
                 method: "POST",
                 headers: {
-                  Cookie:
-                    "session=MTYxODY2NDIwOHxEdi1CQkFFQ180SUFBUkFCRUFBQUh2LUNBQUVHYzNSeWFXNW5EQWtBQjNWelpYSmZhV1FEYVc1MEJBSUFBZz09fNB25-rYA_9CiH_F4AeWIZBX2V7aa6eVz-hrvXazWKkL",
+                  cookie,
                 },
                 body: image,
               }
@@ -111,10 +104,6 @@ const parse = (url, t) => {
       callback();
     });
   }, -1000);
-
-  // q.drain = function () {
-  //   fs.writeFileSync(`./${t}.json`, JSON.stringify(results, null, 4));
-  // };
   q.push(url);
 };
 
