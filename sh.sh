@@ -1,0 +1,1 @@
+dmgbuild -s auto_settings.json asd /Users/pobylan/Desktop/asd.dmg
