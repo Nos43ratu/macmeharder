@@ -24,7 +24,7 @@ const parse = (url, t, source) => {
       let temp = JSON.parse($("script").html());
       results = {
         name: temp.name,
-        subtitle: $(".product-header__subtitle").html().trim(),
+        subtitle: $(".product-header__subtitle").html()?.trim(),
         description: temp.description,
         category: temp.applicationCategory,
         author: temp.author.name,
@@ -34,9 +34,9 @@ const parse = (url, t, source) => {
         source,
       };
 
-      await translate(results.description, options).then(
-        (r) => (results.description = r.text)
-      );
+      // await translate(results.description, options).then(
+      //   (r) => (results.description = r.text)
+      // );
 
       await fetch(api, {
         method: "POST",
