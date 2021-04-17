@@ -1,20 +1,139 @@
 {
   "apps": [
     {
-      "id": "id1091189122",
-      "title": "Bear"
+      "url": "https://apps.apple.com/kz/app/adguard-pro-adblock/id1126386264",
+      "title": "AdGuard",
+      "source": "https://vk.com/doc650119928_596803902"
     },
     {
-      "id": "id470158793",
-      "title": "Keka"
+      "url": "https://apps.apple.com/kz/app/affinity-photo/id824183456?mt=12",
+      "title": "Affinity Photo",
+      "source": "https://vk.com/doc650119928_596804316"
     },
     {
-      "id": "id1005088137",
-      "title": "Mate Translate"
+      "url": "https://apps.apple.com/kz/app/be-focused-pro-pomodoro-timer/id961632517?mt=12",
+      "title": "Be Focused Pro",
+      "source": "https://vk.com/doc650119928_596804511"
     },
     {
-      "id": "id836505650",
-      "title": "Battery Monitor"
+      "url": "https://apps.apple.com/kz/app/bookreader/id448943039?mt=12",
+      "title": "BookReader",
+      "source": "https://vk.com/doc650119928_596804532"
+    },
+    {
+      "url": "https://apps.apple.com/kz/app/cleanmymac-x/id1339170533?mt=12",
+      "title": "CleanMyMac X",
+      "source": "https://vk.com/doc650119928_596804559"
+    },
+    {
+      "url": "https://apps.apple.com/kz/app/daisydisk/id411643860?mt=12",
+      "title": "DaisyDisk",
+      "source": "https://vk.com/doc650119928_596804575"
+    },
+    {
+      "url": "https://apps.apple.com/kz/app/disk-drill-media-recovery/id431224317?mt=12",
+      "title": "Disk Drill",
+      "source": "https://vk.com/doc650119928_596806060"
+    },
+    {
+      "url": "https://apps.apple.com/kz/app/djvu-reader-pro/id895264364?mt=12",
+      "title": "DjVu Reader Pro",
+      "source": "https://vk.com/doc650119928_596804613"
+    },
+    {
+      "url": "https://apps.apple.com/kz/app/earth-3d/id476566660?mt=12",
+      "title": "Earth 3D",
+      "source": "https://vk.com/doc650119928_596804690"
+    },
+    {
+      "url": "https://apps.apple.com/kz/app/gemini-2-the-duplicate-finder/id1090488118?mt=12",
+      "title": "Gemini 2",
+      "source": "https://vk.com/doc650119928_596804722"
+    },
+    {
+      "url": "https://apps.apple.com/kz/app/goodnotes-5/id1444383602",
+      "title": "GoodNotes",
+      "source": "https://vk.com/doc650119928_596804845"
+    },
+    {
+      "url": "https://apps.apple.com/kz/app/graphic/id404705039?mt=12",
+      "title": "Graphic",
+      "source": "https://vk.com/doc650119928_596804867"
+    },
+    {
+      "url": "https://apps.apple.com/kz/app/iconfly/id556381974?mt=12",
+      "title": "IconFly",
+      "source": "https://vk.com/doc650119928_596804889"
+    },
+    {
+      "url": "https://apps.apple.com/kz/app/keka/id470158793?mt=12",
+      "title": "Keka",
+      "source": "https://vk.com/doc650119928_596804918"
+    },
+    {
+      "url": "https://apps.apple.com/kz/app/keykey-typing-practice/id1035137927?mt=12",
+      "title": "KeyKey",
+      "source": "https://vk.com/doc650119928_596804944"
+    },
+    {
+      "url": "https://apps.apple.com/kz/app/lilyview/id529490330?mt=12",
+      "title": "LilyView",
+      "source": "https://vk.com/doc650119928_596804970"
+    },
+    {
+      "url": "https://apps.apple.com/kz/app/logic-pro/id634148309?mt=12",
+      "title": "Logic Pro X",
+      "source": "https://vk.com/doc650119928_596805390"
+    },
+    {
+      "url": "https://apps.apple.com/kz/app/magnet/id441258766?mt=12",
+      "title": "Magnet",
+      "source": "https://vk.com/doc650119928_596805409"
+    },
+    {
+      "url": "https://apps.apple.com/kz/app/mediainfo/id510620098?mt=12",
+      "title": "MediaInfo",
+      "source": "https://vk.com/doc650119928_596805424"
+    },
+    {
+      "url": "https://apps.apple.com/kz/app/mirror-for-samsung-tv/id1107644799?mt=12",
+      "title": "Mirror for Samsung TV",
+      "source": "https://vk.com/doc650119928_596805447"
+    },
+    {
+      "url": "https://apps.apple.com/kz/app/money-pro-personal-finance/id972572731?mt=12",
+      "title": "Money Pro",
+      "source": "https://vk.com/doc650119928_596805499"
+    },
+    {
+      "url": "https://apps.apple.com/kz/app/movist/id461788075?mt=12",
+      "title": "Movist Pro",
+      "source": "https://vk.com/doc650119928_596805542"
+    },
+    {
+      "url": "https://apps.apple.com/kz/app/notability/id360593530",
+      "title": "Notability",
+      "source": "https://vk.com/doc650119928_596805581"
+    },
+    {
+      "url": "https://apps.apple.com/kz/app/pixelmator-classic/id407963104?mt=12",
+      "title": "Pixelmator",
+      "source": "https://vk.com/doc650119928_596805722"
+    },
+    {
+      "url": "https://apps.apple.com/kz/app/pixelmator-pro/id1289583905?mt=12",
+      "title": "Pixelmator Pro",
+      "source": "https://vk.com/doc650119928_596805674"
+    },
+    {
+      "url": "https://apps.apple.com/kz/app/sweet-home-3d/id669289700?mt=12",
+      "title": "Sweet Home 3D",
+      "source": "https://vk.com/doc650119928_596805788"
+    },
+    {
+      "url": "https://apps.apple.com/kz/app/things-3/id904280696?mt=12",
+      "title": "Things3",
+      "source": "https://vk.com/doc650119928_596805817"
     }
   ]
 }

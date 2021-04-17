@@ -13,11 +13,8 @@ const api = "http://macmeharder.com:8080/private/application";
 const options = { from: "en", to: "ru" };
 const cookie =
   "session=MTYxODY2NDIwOHxEdi1CQkFFQ180SUFBUkFCRUFBQUh2LUNBQUVHYzNSeWFXNW5EQWtBQjNWelpYSmZhV1FEYVc1MEJBSUFBZz09fNB25-rYA_9CiH_F4AeWIZBX2V7aa6eVz-hrvXazWKkL";
-const getUrl = (id) => {
-  return "https://apps.apple.com/us/app/" + id;
-};
 
-const parse = (url, t) => {
+const parse = (url, t, source) => {
   let results;
   const q = tress(function (url, callback) {
     needle.get(url, async function (err, res) {
@@ -34,7 +31,7 @@ const parse = (url, t) => {
         operatingSystem: temp.operatingSystem,
         version: $(".whats-new__latest__version").text(),
         size: $("dd").contents().eq(1).text().trim(),
-        source: "asd",
+        source,
       };
 
       await translate(results.description, options).then(
@@ -107,4 +104,4 @@ const parse = (url, t) => {
   q.push(url);
 };
 
-apps.map((e) => parse(getUrl(e.id), e.title));
+apps.map((e) => parse(e.url, e.title, e.source));
