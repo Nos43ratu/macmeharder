@@ -2,7 +2,7 @@ import React from "react";
 
 const AppHead = ({ app }) => {
   return (
-    <section className="flex items-center w-full justify-between border-b-2 border-gray-400 px-52 py-12">
+    <section className="flex items-center w-full justify-between border-b-2 border-gray-400 px-5 py-5 lg:px-52 lg:py-12">
       <div className="flex ">
         <img
           src={
@@ -11,7 +11,7 @@ const AppHead = ({ app }) => {
             (app.image.path || "")
           }
           alt={app.name}
-          className="w-32 h-32"
+          className="w-24 h-24 lg:w-32 lg:h-32"
         />
         <div className="ml-5 flex flex-col justify-center">
           <h1 className="text-3xl font-black">{app.name}</h1>
@@ -20,7 +20,7 @@ const AppHead = ({ app }) => {
       </div>
       <div
         onClick={() => window.open(app.source)}
-        className="w-32 h-8 bg-dodgerBlue rounded-3xl text-white justify-center items-center flex  text-xl uppercase font-bold cursor-pointer"
+        className="w-20 lg:w-32 h-8 bg-dodgerBlue rounded-3xl text-white justify-center items-center flex text-md lg:text-xl uppercase font-bold cursor-pointer"
       >
         Get
       </div>

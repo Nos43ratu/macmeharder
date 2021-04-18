@@ -3,7 +3,7 @@ import Link from "next/link";
 const App = ({ data }) => {
   return (
     <Link href={`/app/${data.id}`}>
-      <div className="w-96 h-80 bg-white mr-10 mt-10 border border-gray-300 flex flex-col hover:border-gray-700 cursor-pointer  text-gray-400 hover:text-black transition-all duration-150 ease-in-out">
+      <div className="w-full lg:w-96 h-80 bg-white mr-2 lg:mr-10 mt-2 lg:mt-10 border border-gray-300 flex flex-col hover:border-gray-700 cursor-pointer  text-gray-400 hover:text-black transition-all duration-150 ease-in-out">
         <div className="max-h-24 h-24 border border-gray-300 text-2xl text-black flex items-center p-8 flex-shrink-0">
           <div>
             <img

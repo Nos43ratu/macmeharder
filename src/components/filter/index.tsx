@@ -29,13 +29,13 @@ const Filter = () => {
   const [tab, setTab] = useState(0);
   const [tag, setTag] = useState("");
   return (
-    <section className="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 flex items-center justify-center px-48 py-28">
-      <div className="bg-gray-900 text-white w-full p-5">
-        <h1 className="text-7xl font-black pb-5 px-8">
+    <section className="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 flex items-center justify-center px-0 py-0 lg:px-48 lg:py-28">
+      <div className="bg-gray-900 text-white w-full p-5 flex-col lg:flex-row">
+        <h1 className="text-3xl lg:text-7xl font-black px-2 py-2 lg:pb-5 lg:px-8">
           Explore Apps for Mac OS
         </h1>
-        <div className="flex  pb-5">
-          <div className="flex flex-1  border-gray-600 rounded-full border mr-5 font-black text-xl relative">
+        <div className="flex pb-5 flex-col lg:flex-row ">
+          <div className="flex flex-1 mb-5 lg:mb-0 border-gray-600 rounded-full border mr-0 lg:mr-5 font-black text-xl relative">
             <Link href="/work">
               <a
                 onClick={() => {
@@ -72,10 +72,10 @@ const Filter = () => {
             <div
               className={`${
                 tab === 0 ? "left-0" : tab === 1 ? "left-1/3" : "left-68"
-              } absolute rounded-full border-2 border-blue-400 w-48 h-full transition-all duration-150 ease-in-out`}
+              } absolute rounded-full border-2 border-blue-400 w-28 lg:w-48 h-full transition-all duration-150 ease-in-out`}
             />
           </div>
-          <div className="flex-1 ml-5">
+          <div className="flex-1 ml-0 lg:ml-5">
             <input
               type="text"
               placeholder="Search"
@@ -84,16 +84,16 @@ const Filter = () => {
             />
           </div>
         </div>
-        <div className=" flex-wrap flex w-1/2">
-          {tags.slice(tab * 7, tab * 7 + 7).map((e) => (
-            <Link href={e.path}>
+        <div className="flex-wrap flex w-full lg:w-1/2">
+          {tags.slice(tab * 7, tab * 7 + 7).map((e, i) => (
+            <Link href={e.path} key={i}>
               <a
                 onClick={() => setTag(e.tag)}
                 className={`${
                   tag === e.tag
                     ? "bg-white text-black hover:bg-white"
                     : "hover:bg-gray-700 transition-all duration-150 ease-in-out"
-                } ml-8 mt-2 px-2.5 rounded py-1 text-xl font-black cursor-pointer`}
+                } ml-2 lg:ml-8 mt-1 lg:mt-2 px-2.5 rounded py-1 text-xl font-black cursor-pointer`}
               >
                 {e.tag}
               </a>

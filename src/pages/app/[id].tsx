@@ -11,7 +11,7 @@ const AppPage = ({ app }) => {
   return (
     <div className="h-full w-full">
       <AppHead app={app} />
-      <div className="px-40 py-16">
+      <div className="px-2 py-2 lg:px-40 lg:py-16 relative">
         <Sections border={false}>
           <AppScreenshots data={app?.screenshots} />
         </Sections>
