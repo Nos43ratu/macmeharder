@@ -5,11 +5,15 @@
   "scripts": {
     "dev": "next dev -p 4000",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "get-schema": "get-graphql-schema http://31.184.253.26:3000/graphql > schema.graphql"
   },
   "dependencies": {
+    "@apollo/client": "^3.3.13",
     "@types/react-dom": "^17.0.0",
     "autoprefixer": "^10.2.3",
+    "get-graphql-schema": "^2.1.2",
+    "graphql": "^15.5.0",
     "next": "^10.0.5",
     "postcss": "^8.2.4",
     "prettier": "^2.2.1",

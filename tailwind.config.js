@@ -35,6 +35,9 @@ module.exports = {
           "100%": { left: "100%" },
         },
       },
+      inset: {
+        68: "68%",
+      },
     },
   },
   variants: {

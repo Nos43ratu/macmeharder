@@ -1,80 +1,140 @@
-schema {
-    query: Query
-    mutation: Mutation
+"""Exposes a URL that specifies the behaviour of this scalar."""
+directive @specifiedBy(
+  """The URL that specifies the behaviour of this scalar."""
+  url: String!
+) on SCALAR
+
+type Application {
+  id: String!
+  created: Date!
+  updated: Date!
+  title: String!
+  description: String!
+  source: String!
+  version: String!
+  size: String!
+  language: String!
+  author: String!
+  icon: String
+  screenshots: [String]
 }
 
-type AppAvatarNode {
-    id: ID!
-    image: String!
-    app: AppsNode!
-    url: String
+input ApplicationFilter {
+  page: Int!
+  size: Int
+  direction: Direction
 }
 
-type AppCategoryNode {
-    id: ID!
-    name: String!
-    appsList: [AppsNode!]!
+input CreateApplicationInput {
+  title: String!
+  description: String!
+  source: String!
+  version: String!
+  size: String!
+  language: String!
+  author: String!
 }
 
-type AppsNode {
-    id: ID!
-    created: DateTime!
-    title: String!
-    language: String
-    languageCount: Int
-    description: String
-    size: Float
-    award: String
-    place: Int
-    age: Int
-    category: AppCategoryNode!
-    developer: String
-    chart: String
-    version: String
-    compatibility: String
-    downloadUrl: String
-    appImages: [ImagesNode!]!
-    appAvatar: [AppAvatarNode!]!
+input CreatePostInput {
+  title: String!
+  subtitle: String
+  description: String!
+  titles: [String!]!
+  descriptions: [String!]!
+  apps: [String!]!
 }
 
-scalar DateTime
+scalar Date
 
-type ImagesNode {
-    id: ID!
-    mainImage: String!
-    isAvatar: Boolean!
-    app: AppsNode!
-    url: String
+enum Direction {
+  ASC
+  DESC
+}
+
+scalar File
+
+type FilteredApplications {
+  applications: [Application!]!
+  hasMore: Boolean!
+}
+
+type FilteredPosts {
+  posts: [Post!]!
+  hasMore: Boolean!
+}
+
+input LoginInput {
+  username: String!
+  password: String!
 }
 
 type Mutation {
-    addApp(title: String!, language: String, size: String, award: String, place: String, age: String, category: String!): AppsNode
-    removeApp(appId: ID): Boolean
+  createApplication(input: CreateApplicationInput!): Application!
+  updateApplication(input: UpdateApplicationInput!): Application!
+  deleteApplication(id: ID!): Application!
+  createPost(input: CreatePostInput!): Post!
+  updatePost(input: UpdatePostInput!): Post!
+  deletePost(id: ID!): Post!
+  login(input: LoginInput!): User!
+  register(input: RegistrationInput!): User!
 }
 
-type PostImageNode {
-    id: ID!
-    image: String!
-    isAvatar: Boolean!
-    post: PostNode!
-    url: String
+type Post {
+  id: ID!
+  created: Date!
+  updated: Date!
+  title: String!
+  subtitle: String
+  description: String!
+  titles: [String!]!
+  descriptions: [String!]!
+  apps: [String!]!
+  logo: String
+  screenshots: [String]
 }
 
-type PostNode {
-    id: ID!
-    created: DateTime!
-    title: String!
-    miniTitle: String
-    body: String
-    postImages: [PostImageNode!]!
+input PostFilter {
+  page: Int!
+  size: Int
+  direction: Direction
 }
 
 type Query {
-    appsList(page: Int, count: Int, category: Int): [AppsNode]
-    appCategories(page: Int, count: Int): [AppCategoryNode]
-    appImages(page: Int, count: Int): [ImagesNode]
-    app(appId: ID): AppsNode
-    appAvatar(appAvatarId: ID): AppAvatarNode
-    post(postId: ID): PostNode
-    postList(page: Int, count: Int, category: Int): [PostNode]
+  application(id: ID!): Application!
+  applicationList(filter: ApplicationFilter!): FilteredApplications!
+  post(id: ID!): Post!
+  postList(filter: PostFilter!): FilteredPosts!
 }
+
+input RegistrationInput {
+  username: String!
+  password: String!
+}
+
+input UpdateApplicationInput {
+  id: ID!
+  title: String
+  description: String
+  source: String
+  version: String
+  size: String
+  language: String
+  author: String!
+}
+
+input UpdatePostInput {
+  id: ID!
+  title: String!
+  subtitle: String
+  description: String!
+  titles: [String!]!
+  descriptions: [String!]!
+  apps: [String!]!
+}
+
+type User {
+  id: ID!
+  username: String!
+  token: String
+}
+

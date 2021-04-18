@@ -9,8 +9,6 @@ body,
 #__next {
   font-family: "San Francisco Pro Display Regular", sans-serif;
   height: 100%;
-  background: #1e1d26;
-  color: #e0e0e1;
 }
 .transformX50 {
   transform: translateX(-50%);
@@ -69,7 +67,7 @@ body,
 @media screen and (max-width: 1024px) {
   .swiper-button-next,
   .swiper-button-prev {
-    visibility: visible;
+    visibility: hidden;
   }
 }
 .swiper-button-prev::after {
