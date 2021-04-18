@@ -1,6 +1,6 @@
 import { apiURL } from "./URI";
 
-export const API = `http://${apiURL}/graphql/`;
+export const API = `http://${apiURL}`;
 
 export const getPostList = async (category: number) => {
   const res = await fetch(API, {
@@ -26,33 +26,12 @@ export const getPostList = async (category: number) => {
   return data.data.postList;
 };
 export const getAppList = async (category: number) => {
-  const res = await fetch(API, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      query: `
-    query {
-    appsList(category: ${category}) {
-    id
-    title
-    appAvatar {
-      url
-    }
-    description
-    category {
-      id
-      name
-    }
-    appImages {
-      url
-    }
-  }
-    }`,
-    }),
+  const uri = API + "/applications/?page=1&size=25";
+  const res = await fetch(uri, {
+    method: "GET",
   });
-
   const data = await res.json();
-  return data.data.appsList;
+  return data;
 };
 export const getPost = async (id: number) => {
   const res = await fetch(API, {

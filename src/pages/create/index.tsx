@@ -1,55 +1,57 @@
 import React from "react";
-import Sections from "../../components/Section/Sections";
-import PostLgNode from "../../components/Post/PostLg/PostLgNode";
-import AppLgNode from "../../components/App/AppLg/AppLgNode";
-import Footer from "../../components/Footer/Footer";
-import PostSmNode from "../../components/Post/PostSm/PostSmNode";
-import { getAppList, getPostList } from "../../utils/getStaticData";
+import Apps from "../../components/apps";
 
 const Create = ({ data }) => {
   return (
-    <div className="h-full bg">
-      <h1 className="mt-10 pt-2 pb-3 text-2xl md:px-10 px-4 font-bold">
-        Create
-      </h1>
-      <div className="border-b md:mx-10 mx-4 border-tuna" />
-      <Sections>
-        <PostLgNode data={data?.PostLG} />
-      </Sections>
-      <Sections title="Edit photos and images">
-        <AppLgNode data={data?.AppLG1} />
-      </Sections>
-      <Sections title="Create Design Masterpiece">
-        <AppLgNode data={data?.AppLG2} />
-      </Sections>
-      <Sections title="Create Design Masterpiece">
-        <PostSmNode data={data?.PostSM} />
-      </Sections>
-      <Sections title="Create Design Masterpiece">
-        <AppLgNode data={data?.AppLG3} />
-      </Sections>
-      <Footer />
-    </div>
+    <main className="">
+      <Apps data={data} />
+    </main>
   );
 };
 
 export default Create;
-export async function getStaticProps() {
-  const PostLG = await getPostList(2);
-  const AppLG1 = await getAppList(2);
-  const AppLG2 = await getAppList(2);
-  const AppLG3 = await getAppList(2);
-  const PostSM = await getPostList(2);
 
+export async function getStaticProps() {
+  const C1Res = await fetch(
+    "http://macmeharder.com:8080/applications/15/?page=1&size=100"
+  );
+  const C1Data = await C1Res.json();
+  const C2Res = await fetch(
+    "http://macmeharder.com:8080/applications/16/?page=1&size=100"
+  );
+  const C2Data = await C2Res.json();
+  const C3Res = await fetch(
+    "http://macmeharder.com:8080/applications/17/?page=1&size=100"
+  );
+  const C3Data = await C3Res.json();
+  const C4Res = await fetch(
+    "http://macmeharder.com:8080/applications/18/?page=1&size=100"
+  );
+  const C4Data = await C4Res.json();
+  const C5Res = await fetch(
+    "http://macmeharder.com:8080/applications/19/?page=1&size=100"
+  );
+  const C5Data = await C5Res.json();
+  const C6Res = await fetch(
+    "http://macmeharder.com:8080/applications/20/?page=1&size=100"
+  );
+  const C6Data = await C6Res.json();
+  const C7Res = await fetch(
+    "http://macmeharder.com:8080/applications/21/?page=1&size=100"
+  );
+  const C7Data = await C7Res.json();
+  const data = [
+    ...(C1Data || []),
+    ...(C2Data || []),
+    ...(C3Data || []),
+    ...(C4Data || []),
+    ...(C5Data || []),
+    ...(C6Data || []),
+    ...(C7Data || []),
+  ];
   return {
     props: {
-      data: {
-        PostLG,
-        AppLG3,
-        AppLG1,
-        AppLG2,
-        PostSM,
-      },
+      data,
     },
   };
 }
